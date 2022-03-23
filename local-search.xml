@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>求质因子模板</title>
+    <link href="/2022/03/23/%E6%B1%82%E8%B4%A8%E5%9B%A0%E5%AD%90%E6%A8%A1%E6%9D%BF/"/>
+    <url>/2022/03/23/%E6%B1%82%E8%B4%A8%E5%9B%A0%E5%AD%90%E6%A8%A1%E6%9D%BF/</url>
+    
+    <content type="html"><![CDATA[<p>复杂度大概O(nlnn)吧</p><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">1e6</span>+<span class="hljs-number">10</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>; i&lt;N; i++) &#123;<br><span class="hljs-keyword">if</span>(tt[i].<span class="hljs-built_in">size</span>())<span class="hljs-keyword">continue</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i; j&lt;N; j+=i) &#123;<br><span class="hljs-type">int</span> t=j,cnt=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span>(t%i==<span class="hljs-number">0</span>)t/=i,cnt++;<br>tt[j].<span class="hljs-built_in">push_back</span>(&#123;i,cnt&#125;);<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>字符串处理技巧</title>
     <link href="/2022/03/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E6%8A%80%E5%B7%A7/"/>
     <url>/2022/03/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E6%8A%80%E5%B7%A7/</url>
