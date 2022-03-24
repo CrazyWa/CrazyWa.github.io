@@ -16,12 +16,12 @@
   <meta name="author" content="Crzay_wa">
   <meta name="keywords" content="zh_CN">
   
-    <meta name="description" content="字符串处理常用技巧1、find()以及其他查找函数find()int find(char c, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符c在当前字符串的位置int find(const char *s, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符串s在当前串中的位置int find(const c">
+    <meta name="description" content="字符串处理常用技巧  1、find()以及其他查找函数  find() int find(char c, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符c在当前字符串的位置 int find(const char *s, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符串s在当前串中的位置 int find(const char *s, int pos, int n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串处理技巧">
 <meta property="og:url" content="http://crzzywa.github.io/2022/03/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="Crazy_wa">
-<meta property="og:description" content="字符串处理常用技巧1、find()以及其他查找函数find()int find(char c, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符c在当前字符串的位置int find(const char *s, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符串s在当前串中的位置int find(const c">
+<meta property="og:description" content="字符串处理常用技巧  1、find()以及其他查找函数  find() int find(char c, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符c在当前字符串的位置 int find(const char *s, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符串s在当前串中的位置 int find(const char *s, int pos, int n">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-22T14:31:23.000Z">
 <meta property="article:modified_time" content="2022-03-22T14:33:39.656Z">
@@ -210,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.8k 字
+      4.3k 字
     </span>
   
 
@@ -219,7 +219,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40 分钟
+      36 分钟
     </span>
   
 
@@ -251,30 +251,105 @@
             <h1 style="display: none">字符串处理技巧</h1>
             
             <div class="markdown-body">
-              <h1 id="字符串处理常用技巧"><a href="#字符串处理常用技巧" class="headerlink" title="字符串处理常用技巧"></a>字符串处理常用技巧</h1><h3 id="1、find-以及其他查找函数"><a href="#1、find-以及其他查找函数" class="headerlink" title="1、find()以及其他查找函数"></a>1、find()以及其他查找函数</h3><h6 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h6><p>int find(char c, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符c在当前字符串的位置<br>int find(const char *s, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符串s在当前串中的位置<br>int find(const char *s, int pos, int n) const;&#x2F;&#x2F;从pos开始查找字符串s中前n个字符在当前串中的位置<br>int find(const string &amp;s, int pos &#x3D; 0) const;&#x2F;&#x2F;从pos开始查找字符串s在当前串中的位置<br>&#x2F;&#x2F;查找成功时返回所在位置，失败返回<strong>string::npos</strong>的值</p>
-<h6 id="rfind"><a href="#rfind" class="headerlink" title="rfind()"></a>rfind()</h6><p>int rfind(char c, int pos &#x3D; npos) const;&#x2F;&#x2F;从pos开始从后向前查找字符c在当前串中的位置<br>int rfind(const char *s, int pos &#x3D; npos) const;<br>int rfind(const char *s, int pos, int n &#x3D; npos) const;<br>int rfind(const string &amp;s,int pos &#x3D; npos) const;<br>&#x2F;&#x2F;从pos开始从后向前查找字符串s中前n个字符组成的字符串在当前串中的位置，成功返回所在位置，失败时返回<strong>string::npos</strong>的值</p>
-<h6 id="find-first-not-of"><a href="#find-first-not-of" class="headerlink" title="find_first_not_of()"></a>find_first_not_of()</h6><p>int find_first_not_of(char c, int pos &#x3D; 0) const;<br>int find_first_not_of(const char <em>s, int pos &#x3D; 0) const;<br>int find_first_not_of(const char <em>s, int pos,int n) const;<br>int find_first_not_of(const string &amp;s,int pos &#x3D; 0) const;<br>&#x2F;&#x2F;从当前串中查找第一个不在串s中的字符出现的位置，失败返回**string::npos</em></em></p>
-<h6 id="find-last-not-of"><a href="#find-last-not-of" class="headerlink" title="find_last_not_of()"></a>find_last_not_of()</h6><p>int find_last_not_of(char c, int pos &#x3D; npos) const;<br>int find_last_not_of(const char *s, int pos &#x3D; npos) const;<br>int find_last_not_of(const char *s, int pos, int n) const;<br>int find_last_not_of(const string &amp;s,int pos &#x3D; npos) const;</p>
-<p>&#x2F;&#x2F;从当前串从后往前查找第一个不在串s中的字符出现的位置，失败则返回<strong>string::npos</strong></p>
-<h3 id="2、c-str"><a href="#2、c-str" class="headerlink" title="2、c_str()"></a>2、c_str()</h3><p>可以将string转换为*char类型</p>
-<h3 id="3、更改内容"><a href="#3、更改内容" class="headerlink" title="3、更改内容"></a>3、更改内容</h3><h6 id="substr-int-st-int-len"><a href="#substr-int-st-int-len" class="headerlink" title="substr(int st,int len)"></a>substr(int st,int len)</h6><p>可以返回st开始len个字符的字符串</p>
-<h6 id="s"><a href="#s" class="headerlink" title="+s"></a>+s</h6><p>在首或尾添加字符串</p>
-<h6 id="assign-x2F-x2F-可以实现更灵活的赋值"><a href="#assign-x2F-x2F-可以实现更灵活的赋值" class="headerlink" title="assign()&#x2F;&#x2F;可以实现更灵活的赋值"></a>assign()&#x2F;&#x2F;可以实现更灵活的赋值</h6><p>s.assign(str,1,3);&#x2F;&#x2F;如果str是”iamangel” 就是把”ama”赋给字符串<br>s.assign(str,2,string::npos);&#x2F;&#x2F;把字符串str从索引值2开始到结尾赋给s</p>
-<p>s.assign(“nico”,5);&#x2F;&#x2F;把’n’ ‘I’ ‘c’ ‘o’ ‘&#x2F;0’赋给字符串<br>s.assign(5,’x’);&#x2F;&#x2F;把五个x赋给字符串</p>
-<h6 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h6><p>s.append(str,1,3);&#x2F;&#x2F;不解释了 同前面的函数参数assign的解释<br>s.append(str,2,string::npos)&#x2F;&#x2F;不解释了<br>s.append(“nico”,5);<br>s.append(5,’x’);</p>
-<h6 id="insert-x2F-x2F-在某个位置插入字符串"><a href="#insert-x2F-x2F-在某个位置插入字符串" class="headerlink" title="insert()&#x2F;&#x2F;在某个位置插入字符串"></a>insert()&#x2F;&#x2F;在某个位置插入字符串</h6><p> s.insert(0,”my name”);在0处插入字符串<br> s.insert(1,str);</p>
-<p>string &amp;insert(int p0, const char *s);<br>string &amp;insert(int p0, const char *s, int n);<br>string &amp;insert(int p0,const string &amp;s);<br>string &amp;insert(int p0,const string &amp;s, int pos, int n);<br>&#x2F;&#x2F;前4个函数在p0位置插入字符串s中pos开始的前n个字符<br>string &amp;insert(int p0, int n, char c);&#x2F;&#x2F;此函数在p0处插入n个字符c<br>iterator insert(iterator it, char c);&#x2F;&#x2F;在it处插入字符c，返回插入后迭代器的位置<br>void insert(iterator it, const_iterator first, const_iterator last);&#x2F;&#x2F;在it处插入[first，last）之间的字符<br>void insert(iterator it, int n, char c);&#x2F;&#x2F;在it处插入n个字符c</p>
+              <h1 id="字符串处理常用技巧"><a class="markdownIt-Anchor" href="#字符串处理常用技巧"></a> 字符串处理常用技巧</h1>
+<h3 id="1-find以及其他查找函数"><a class="markdownIt-Anchor" href="#1-find以及其他查找函数"></a> 1、find()以及其他查找函数</h3>
+<h6 id="find"><a class="markdownIt-Anchor" href="#find"></a> find()</h6>
+<p>int find(char c, int pos = 0) const;//从pos开始查找字符c在当前字符串的位置<br />
+int find(const char *s, int pos = 0) const;//从pos开始查找字符串s在当前串中的位置<br />
+int find(const char *s, int pos, int n) const;//从pos开始查找字符串s中前n个字符在当前串中的位置<br />
+int find(const string &amp;s, int pos = 0) const;//从pos开始查找字符串s在当前串中的位置<br />
+//查找成功时返回所在位置，失败返回<strong>string::npos</strong>的值</p>
+<h6 id="rfind"><a class="markdownIt-Anchor" href="#rfind"></a> rfind()</h6>
+<p>int rfind(char c, int pos = npos) const;//从pos开始从后向前查找字符c在当前串中的位置<br />
+int rfind(const char *s, int pos = npos) const;<br />
+int rfind(const char *s, int pos, int n = npos) const;<br />
+int rfind(const string &amp;s,int pos = npos) const;<br />
+//从pos开始从后向前查找字符串s中前n个字符组成的字符串在当前串中的位置，成功返回所在位置，失败时返回<strong>string::npos</strong>的值</p>
+<h6 id="find_first_not_of"><a class="markdownIt-Anchor" href="#find_first_not_of"></a> find_first_not_of()</h6>
+<p>int find_first_not_of(char c, int pos = 0) const;<br />
+int find_first_not_of(const char *s, int pos = 0) const;<br />
+int find_first_not_of(const char *s, int pos,int n) const;<br />
+int find_first_not_of(const string &amp;s,int pos = 0) const;<br />
+//从当前串中查找第一个不在串s中的字符出现的位置，失败返回<strong>string::npos</strong></p>
+<h6 id="find_last_not_of"><a class="markdownIt-Anchor" href="#find_last_not_of"></a> find_last_not_of()</h6>
+<p>int find_last_not_of(char c, int pos = npos) const;<br />
+int find_last_not_of(const char *s, int pos = npos) const;<br />
+int find_last_not_of(const char *s, int pos, int n) const;<br />
+int find_last_not_of(const string &amp;s,int pos = npos) const;</p>
+<p>//从当前串从后往前查找第一个不在串s中的字符出现的位置，失败则返回<strong>string::npos</strong></p>
+<h3 id="2-c_str"><a class="markdownIt-Anchor" href="#2-c_str"></a> 2、c_str()</h3>
+<p>可以将string转换为*char类型</p>
+<h3 id="3-更改内容"><a class="markdownIt-Anchor" href="#3-更改内容"></a> 3、更改内容</h3>
+<h6 id="substrint-stint-len"><a class="markdownIt-Anchor" href="#substrint-stint-len"></a> substr(int st,int len)</h6>
+<p>可以返回st开始len个字符的字符串</p>
+<h6 id="s"><a class="markdownIt-Anchor" href="#s"></a> +s</h6>
+<p>在首或尾添加字符串</p>
+<h6 id="assign可以实现更灵活的赋值"><a class="markdownIt-Anchor" href="#assign可以实现更灵活的赋值"></a> assign()//可以实现更灵活的赋值</h6>
+<p>s.assign(str,1,3);//如果str是”iamangel” 就是把”ama”赋给字符串<br />
+s.assign(str,2,string::npos);//把字符串str从索引值2开始到结尾赋给s</p>
+<p>s.assign(“nico”,5);//把’n’ ‘I’ ‘c’ ‘o’ ‘/0’赋给字符串<br />
+s.assign(5,‘x’);//把五个x赋给字符串</p>
+<h6 id="append"><a class="markdownIt-Anchor" href="#append"></a> append()</h6>
+<p>s.append(str,1,3);//不解释了 同前面的函数参数assign的解释<br />
+s.append(str,2,string::npos)//不解释了<br />
+s.append(“nico”,5);<br />
+s.append(5,‘x’);</p>
+<h6 id="insert在某个位置插入字符串"><a class="markdownIt-Anchor" href="#insert在某个位置插入字符串"></a> insert()//在某个位置插入字符串</h6>
+<p>s.insert(0,”my name”);在0处插入字符串<br />
+s.insert(1,str);</p>
+<p>string &amp;insert(int p0, const char *s);<br />
+string &amp;insert(int p0, const char *s, int n);<br />
+string &amp;insert(int p0,const string &amp;s);<br />
+string &amp;insert(int p0,const string &amp;s, int pos, int n);<br />
+//前4个函数在p0位置插入字符串s中pos开始的前n个字符<br />
+string &amp;insert(int p0, int n, char c);//此函数在p0处插入n个字符c<br />
+iterator insert(iterator it, char c);//在it处插入字符c，返回插入后迭代器的位置<br />
+void insert(iterator it, const_iterator first, const_iterator last);//在it处插入[first，last）之间的字符<br />
+void insert(iterator it, int n, char c);//在it处插入n个字符c</p>
 <p><strong>insert()不支持插入单个字符！！</strong></p>
-<p>为了插 入单个字符，insert()函数提供了两个对插入单个字符操作的重载函数：insert(size_type index,size_type num,chart c)和insert(iterator pos,size_type num,chart c)。其中size_type是无符号整数，iterator是char*,所以，你这么调用insert函数是不行的：insert(0,1, ‘j’);这时候第一个参数将转换成哪一个呢？所以你必须这么写：insert((string::size_type)0,1,’j’)！</p>
-<h6 id="erase-x2F-x2F-去除字符串"><a href="#erase-x2F-x2F-去除字符串" class="headerlink" title="erase()&#x2F;&#x2F;去除字符串"></a>erase()&#x2F;&#x2F;去除字符串</h6><p>s.erase(13);&#x2F;&#x2F;从索引13开始往后全删除<br>s.erase(7,5);&#x2F;&#x2F;从索引7开始往后删5个</p>
-<p>iterator erase(iterator first, iterator last);&#x2F;&#x2F;删除[first，last）之间的所有字符，返回删除后迭代器的位置<br>iterator erase(iterator it);&#x2F;&#x2F;删除it指向的字符，返回删除后迭代器的位置<br>string &amp;erase(int pos &#x3D; 0, int n &#x3D; npos);&#x2F;&#x2F;删除pos开始的n个字符，返回修改后的字符串</p>
-<h6 id="replace-x2F-x2F-替换字符串"><a href="#replace-x2F-x2F-替换字符串" class="headerlink" title="replace()&#x2F;&#x2F;替换字符串"></a>replace()&#x2F;&#x2F;替换字符串</h6><p>s.replace(1,2,”nternationalizatio”);&#x2F;&#x2F;从索引1开始的2个替换成后面的C_string</p>
-<p>string &amp;replace(int p0, int n0,const char *s);&#x2F;&#x2F;删除从p0开始的n0个字符，然后在p0处插入串s<br>string &amp;replace(int p0, int n0,const char *s, int n);&#x2F;&#x2F;删除p0开始的n0个字符，然后在p0处插入字符串s的前n个字符<br>string &amp;replace(int p0, int n0,const string &amp;s);&#x2F;&#x2F;删除从p0开始的n0个字符，然后在p0处插入串s<br>string &amp;replace(int p0, int n0,const string &amp;s, int pos, int n);&#x2F;&#x2F;删除p0开始的n0个字符，然后在p0处插入串s中从pos开始的n个字符<br>string &amp;replace(int p0, int n0,int n, char c);&#x2F;&#x2F;删除p0开始的n0个字符，然后在p0处插入n个字符c<br>string &amp;replace(iterator first0, iterator last0,const char *s);&#x2F;&#x2F;把[first0，last0）之间的部分替换为字符串s<br>string &amp;replace(iterator first0, iterator last0,const char *s, int n);&#x2F;&#x2F;把[first0，last0）之间的部分替换为s的前n个字符<br>string &amp;replace(iterator first0, iterator last0,const string &amp;s);&#x2F;&#x2F;把[first0，last0）之间的部分替换为串s<br>string &amp;replace(iterator first0, iterator last0,int n, char c);&#x2F;&#x2F;把[first0，last0）之间的部分替换为n个字符c<br>string &amp;replace(iterator first0, iterator last0,const_iterator first, const_iterator last);&#x2F;&#x2F;把[first0，last0）之间的部分替换成[first，last）之间的字符串</p>
-<h5 id="以上内容大部分引自https-blog-csdn-net-fdqw-sph-article-details-54233971-《c-中的string常用函数用法总结》"><a href="#以上内容大部分引自https-blog-csdn-net-fdqw-sph-article-details-54233971-《c-中的string常用函数用法总结》" class="headerlink" title="以上内容大部分引自https://blog.csdn.net/fdqw_sph/article/details/54233971 《c++中的string常用函数用法总结》"></a>以上内容大部分引自<a target="_blank" rel="noopener" href="https://blog.csdn.net/fdqw_sph/article/details/54233971">https://blog.csdn.net/fdqw_sph/article/details/54233971</a> 《c++中的string常用函数用法总结》</h5><h3 id="4、sscanf"><a href="#4、sscanf" class="headerlink" title="4、sscanf()"></a>4、sscanf()</h3><p> <strong>int sscanf(const char *str, const char *format, …)</strong></p>
+<p>为了插 入单个字符，insert()函数提供了两个对插入单个字符操作的重载函数：insert(size_type index,size_type num,chart c)和insert(iterator pos,size_type num,chart c)。其中size_type是无符号整数，iterator是char*,所以，你这么调用insert函数是不行的：insert(0,1, ‘j’);这时候第一个参数将转换成哪一个呢？所以你必须这么写：insert((string::size_type)0,1,‘j’)！</p>
+<h6 id="erase去除字符串"><a class="markdownIt-Anchor" href="#erase去除字符串"></a> erase()//去除字符串</h6>
+<p>s.erase(13);//从索引13开始往后全删除<br />
+s.erase(7,5);//从索引7开始往后删5个</p>
+<p>iterator erase(iterator first, iterator last);//删除[first，last）之间的所有字符，返回删除后迭代器的位置<br />
+iterator erase(iterator it);//删除it指向的字符，返回删除后迭代器的位置<br />
+string &amp;erase(int pos = 0, int n = npos);//删除pos开始的n个字符，返回修改后的字符串</p>
+<h6 id="replace替换字符串"><a class="markdownIt-Anchor" href="#replace替换字符串"></a> replace()//替换字符串</h6>
+<p>s.replace(1,2,”nternationalizatio”);//从索引1开始的2个替换成后面的C_string</p>
+<p>string &amp;replace(int p0, int n0,const char *s);//删除从p0开始的n0个字符，然后在p0处插入串s<br />
+string &amp;replace(int p0, int n0,const char *s, int n);//删除p0开始的n0个字符，然后在p0处插入字符串s的前n个字符<br />
+string &amp;replace(int p0, int n0,const string &amp;s);//删除从p0开始的n0个字符，然后在p0处插入串s<br />
+string &amp;replace(int p0, int n0,const string &amp;s, int pos, int n);//删除p0开始的n0个字符，然后在p0处插入串s中从pos开始的n个字符<br />
+string &amp;replace(int p0, int n0,int n, char c);//删除p0开始的n0个字符，然后在p0处插入n个字符c<br />
+string &amp;replace(iterator first0, iterator last0,const char *s);//把[first0，last0）之间的部分替换为字符串s<br />
+string &amp;replace(iterator first0, iterator last0,const char *s, int n);//把[first0，last0）之间的部分替换为s的前n个字符<br />
+string &amp;replace(iterator first0, iterator last0,const string &amp;s);//把[first0，last0）之间的部分替换为串s<br />
+string &amp;replace(iterator first0, iterator last0,int n, char c);//把[first0，last0）之间的部分替换为n个字符c<br />
+string &amp;replace(iterator first0, iterator last0,const_iterator first, const_iterator last);//把[first0，last0）之间的部分替换成[first，last）之间的字符串</p>
+<h5 id="以上内容大部分引自httpsblogcsdnnetfdqw_spharticledetails54233971-c中的string常用函数用法总结"><a class="markdownIt-Anchor" href="#以上内容大部分引自httpsblogcsdnnetfdqw_spharticledetails54233971-c中的string常用函数用法总结"></a> 以上内容大部分引自https://blog.csdn.net/fdqw_sph/article/details/54233971 《c++中的string常用函数用法总结》</h5>
+<h3 id="4-sscanf"><a class="markdownIt-Anchor" href="#4-sscanf"></a> 4、sscanf()</h3>
+<p><strong>int sscanf(const char *str, const char *format, …)</strong></p>
 <p><strong>例题：L2-012 关于堆的判断</strong><a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805046380707840/problems/994805064676261888">https://pintia.cn/problem-sets/994805046380707840/problems/994805064676261888</a></p>
-<p>使用例子：sscanf(s.c_str(),”%d is %s %s of %d”,&amp;a,smp1,smp2,&amp;b);</p>
-<h3 id="5、cout输出格式控制"><a href="#5、cout输出格式控制" class="headerlink" title="5、cout输出格式控制"></a>5、cout输出格式控制</h3><h4 id="1-控制符控制输出格式"><a href="#1-控制符控制输出格式" class="headerlink" title="(1)控制符控制输出格式"></a>(1)控制符控制输出格式</h4><h5 id="setbase-n-设置整数的基数-n只能是8，10，16三者之一"><a href="#setbase-n-设置整数的基数-n只能是8，10，16三者之一" class="headerlink" title="setbase(n) 设置整数的基数(n只能是8，10，16三者之一)"></a>setbase(n) 设置整数的基数(n只能是8，10，16三者之一)</h5><h5 id="setfill-c-设置填充字符c，c可以是字符常量或字符串变量"><a href="#setfill-c-设置填充字符c，c可以是字符常量或字符串变量" class="headerlink" title="setfill(c) 设置填充字符c，c可以是字符常量或字符串变量"></a>setfill(c) 设置填充字符c，c可以是字符常量或<em><strong>字符串变量</strong></em></h5><h5 id="setpercision-n-设置实数精度为n位。在以一般十进制小数形式输入时，n表示有效数字。在以fixed-固定小数位数-形式和scientific-指数-形式输出时，n为小数位数。"><a href="#setpercision-n-设置实数精度为n位。在以一般十进制小数形式输入时，n表示有效数字。在以fixed-固定小数位数-形式和scientific-指数-形式输出时，n为小数位数。" class="headerlink" title="setpercision(n) 设置实数精度为n位。在以一般十进制小数形式输入时，n表示有效数字。在以fixed(固定小数位数)形式和scientific(指数)形式输出时，n为小数位数。"></a>setpercision(n) 设置实数精度为n位。在以一般十进制小数形式输入时，n表示有效数字。在以fixed(固定小数位数)形式和scientific(指数)形式输出时，n为小数位数。</h5><h5 id="setw-n-设置实数的精度为n位"><a href="#setw-n-设置实数的精度为n位" class="headerlink" title="setw(n) 设置实数的精度为n位"></a>setw(n) 设置实数的精度为n位</h5><h5 id="setiosflags-ios-showbase-输出时显示进制指示符-0表示八进制，0x或0X表示十六进制"><a href="#setiosflags-ios-showbase-输出时显示进制指示符-0表示八进制，0x或0X表示十六进制" class="headerlink" title="setiosflags(ios::showbase) 输出时显示进制指示符(0表示八进制，0x或0X表示十六进制)"></a><strong>setiosflags</strong>(ios::showbase) 输出时显示进制指示符(0表示八进制，0x或0X表示十六进制)</h5><h5 id="setiosflags-ios-fixed-设置浮点数以固定的小数位数显示"><a href="#setiosflags-ios-fixed-设置浮点数以固定的小数位数显示" class="headerlink" title="setiosflags(ios::fixed) 设置浮点数以固定的小数位数显示"></a>setiosflags(ios::fixed) 设置浮点数以固定的小数位数显示</h5><h5 id="setiosflags-ios-scientific-设置浮点数以科学计数法显示"><a href="#setiosflags-ios-scientific-设置浮点数以科学计数法显示" class="headerlink" title="setiosflags(ios::scientific) 设置浮点数以科学计数法显示"></a>setiosflags(ios::scientific) 设置浮点数以科学计数法显示</h5><h5 id="setiosflags-ios-left-数据左对齐"><a href="#setiosflags-ios-left-数据左对齐" class="headerlink" title="setiosflags(ios::left) 数据左对齐"></a>setiosflags(ios::left) 数据左对齐</h5><h5 id="setiosflags-ios-right-数据右对齐"><a href="#setiosflags-ios-right-数据右对齐" class="headerlink" title="setiosflags(ios::right) 数据右对齐"></a>setiosflags(ios::right) 数据右对齐</h5><h5 id="setiosflags-ios-skipws-忽略前导零"><a href="#setiosflags-ios-skipws-忽略前导零" class="headerlink" title="setiosflags(ios::skipws) 忽略前导零"></a>setiosflags(ios::skipws) 忽略前导零</h5><h4 id="2-流成员函数控制输出格式"><a href="#2-流成员函数控制输出格式" class="headerlink" title="(2)流成员函数控制输出格式"></a>(2)流成员函数控制输出格式</h4><p>同上比较</p>
-<h5 id="percision-n-x3D-setpercision-n"><a href="#percision-n-x3D-setpercision-n" class="headerlink" title="percision(n)&#x3D;setpercision(n)"></a>percision(n)&#x3D;setpercision(n)</h5><h5 id="width-n-x3D-setw-n"><a href="#width-n-x3D-setw-n" class="headerlink" title="width(n)&#x3D;setw(n)"></a>width(n)&#x3D;setw(n)</h5><h5 id="fill-c-x3D-setfill-c"><a href="#fill-c-x3D-setfill-c" class="headerlink" title="fill(c)&#x3D;setfill(c)"></a>fill(c)&#x3D;setfill(c)</h5><h5 id="setf-x3D-setioflags"><a href="#setf-x3D-setioflags" class="headerlink" title="setf()&#x3D;setioflags()"></a>setf()&#x3D;setioflags()</h5>
+<p>使用例子：sscanf(s.c_str(),&quot;%d is %s %s of %d&quot;,&amp;a,smp1,smp2,&amp;b);</p>
+<h3 id="5-cout输出格式控制"><a class="markdownIt-Anchor" href="#5-cout输出格式控制"></a> 5、cout输出格式控制</h3>
+<h4 id="1控制符控制输出格式"><a class="markdownIt-Anchor" href="#1控制符控制输出格式"></a> (1)控制符控制输出格式</h4>
+<h5 id="setbasen-设置整数的基数n只能是81016三者之一"><a class="markdownIt-Anchor" href="#setbasen-设置整数的基数n只能是81016三者之一"></a> setbase(n) 设置整数的基数(n只能是8，10，16三者之一)</h5>
+<h5 id="setfill-设置填充字符cc可以是字符常量或字符串变量"><a class="markdownIt-Anchor" href="#setfill-设置填充字符cc可以是字符常量或字符串变量"></a> setfill© 设置填充字符c，c可以是字符常量或***字符串变量***</h5>
+<h5 id="setpercisionn-设置实数精度为n位-在以一般十进制小数形式输入时n表示有效数字-在以fixed固定小数位数形式和scientific指数形式输出时n为小数位数"><a class="markdownIt-Anchor" href="#setpercisionn-设置实数精度为n位-在以一般十进制小数形式输入时n表示有效数字-在以fixed固定小数位数形式和scientific指数形式输出时n为小数位数"></a> setpercision(n) 设置实数精度为n位。在以一般十进制小数形式输入时，n表示有效数字。在以fixed(固定小数位数)形式和scientific(指数)形式输出时，n为小数位数。</h5>
+<h5 id="setwn-设置实数的精度为n位"><a class="markdownIt-Anchor" href="#setwn-设置实数的精度为n位"></a> setw(n) 设置实数的精度为n位</h5>
+<h5 id="setiosflagsiosshowbase-输出时显示进制指示符0表示八进制0x或0x表示十六进制"><a class="markdownIt-Anchor" href="#setiosflagsiosshowbase-输出时显示进制指示符0表示八进制0x或0x表示十六进制"></a> <strong>setiosflags</strong>(ios::showbase) 输出时显示进制指示符(0表示八进制，0x或0X表示十六进制)</h5>
+<h5 id="setiosflagsiosfixed-设置浮点数以固定的小数位数显示"><a class="markdownIt-Anchor" href="#setiosflagsiosfixed-设置浮点数以固定的小数位数显示"></a> setiosflags(ios::fixed) 设置浮点数以固定的小数位数显示</h5>
+<h5 id="setiosflagsiosscientific-设置浮点数以科学计数法显示"><a class="markdownIt-Anchor" href="#setiosflagsiosscientific-设置浮点数以科学计数法显示"></a> setiosflags(ios::scientific) 设置浮点数以科学计数法显示</h5>
+<h5 id="setiosflagsiosleft-数据左对齐"><a class="markdownIt-Anchor" href="#setiosflagsiosleft-数据左对齐"></a> setiosflags(ios::left) 数据左对齐</h5>
+<h5 id="setiosflagsiosright-数据右对齐"><a class="markdownIt-Anchor" href="#setiosflagsiosright-数据右对齐"></a> setiosflags(ios::right) 数据右对齐</h5>
+<h5 id="setiosflagsiosskipws-忽略前导零"><a class="markdownIt-Anchor" href="#setiosflagsiosskipws-忽略前导零"></a> setiosflags(ios::skipws) 忽略前导零</h5>
+<h4 id="2流成员函数控制输出格式"><a class="markdownIt-Anchor" href="#2流成员函数控制输出格式"></a> (2)流成员函数控制输出格式</h4>
+<p>同上比较</p>
+<h5 id="percisionnsetpercisionn"><a class="markdownIt-Anchor" href="#percisionnsetpercisionn"></a> percision(n)=setpercision(n)</h5>
+<h5 id="widthnsetwn"><a class="markdownIt-Anchor" href="#widthnsetwn"></a> width(n)=setw(n)</h5>
+<h5 id="fillsetfill"><a class="markdownIt-Anchor" href="#fillsetfill"></a> fill©=setfill©</h5>
+<h5 id="setfsetioflags"><a class="markdownIt-Anchor" href="#setfsetioflags"></a> setf()=setioflags()</h5>
+
             </div>
             <hr>
             <div>
