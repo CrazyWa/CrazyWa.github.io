@@ -16,12 +16,12 @@
   <meta name="author" content="Crzay_wa">
   <meta name="keywords" content="zh_CN">
   
-    <meta name="description" content="题目描述 给定一颗线段树，每次区间加一个x，如果每次在线段树区间加操作做完后，依次选一个叶子节点进入，然后一直走到根节点，问最后得到的期望值是多少。 小Y同学为了让题目更简单，对于n个整数，n是一个2^x2x的整数，来保证这个线段树是一棵满二叉树。 他现在想问你，每次给一段区间加上一个整数（每次操作对后续有影响），然后依次在线段树中选一个叶子节点，一直走到根节点，将一路经过的节点权值累加，问把每">
+    <meta name="description" content="题目描述 给定一颗线段树，每次区间加一个x，如果每次在线段树区间加操作做完后，依次选一个叶子节点进入，然后一直走到根节点，问最后得到的期望值是多少。 小Y同学为了让题目更简单，对于n个整数，n是一个2^x2x的整数，来保证这个线段树是一棵满二叉树。 他现在想问你，每次给一段区间加上一个整数（每次操作对后续有影响），然后依次在线段树中选一个叶子节点，一直走到根节点，将一路经过的节点权值累加，问">
 <meta property="og:type" content="article">
 <meta property="og:title" content="看错题-线段树">
 <meta property="og:url" content="http://crzzywa.github.io/2022/03/27/%E7%9C%8B%E9%94%99%E9%A2%98/index.html">
 <meta property="og:site_name" content="Crazy_wa">
-<meta property="og:description" content="题目描述 给定一颗线段树，每次区间加一个x，如果每次在线段树区间加操作做完后，依次选一个叶子节点进入，然后一直走到根节点，问最后得到的期望值是多少。 小Y同学为了让题目更简单，对于n个整数，n是一个2^x2x的整数，来保证这个线段树是一棵满二叉树。 他现在想问你，每次给一段区间加上一个整数（每次操作对后续有影响），然后依次在线段树中选一个叶子节点，一直走到根节点，将一路经过的节点权值累加，问把每">
+<meta property="og:description" content="题目描述 给定一颗线段树，每次区间加一个x，如果每次在线段树区间加操作做完后，依次选一个叶子节点进入，然后一直走到根节点，问最后得到的期望值是多少。 小Y同学为了让题目更简单，对于n个整数，n是一个2^x2x的整数，来保证这个线段树是一棵满二叉树。 他现在想问你，每次给一段区间加上一个整数（每次操作对后续有影响），然后依次在线段树中选一个叶子节点，一直走到根节点，将一路经过的节点权值累加，问">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-27T11:32:09.000Z">
 <meta property="article:modified_time" content="2022-03-27T11:42:23.488Z">
@@ -250,23 +250,26 @@
             <h1 style="display: none">看错题-线段树</h1>
             
             <div class="markdown-body">
-              <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+              <h2 id="题目描述">题目描述</h2>
 <p>给定一颗线段树，每次区间加一个x，如果每次在线段树区间加操作做完后，依次选一个叶子节点进入，然后一直走到根节点，问最后得到的期望值是多少。</p>
 <p>小Y同学为了让题目更简单，对于n个整数，n是一个2^x2<em>x</em>的整数，来保证这个线段树是一棵满二叉树。</p>
 <p>他现在想问你，每次给一段区间加上一个整数（每次操作对后续有影响），然后依次在线段树中选一个叶子节点，一直走到根节点，将一路经过的节点权值累加，问把每一个叶子节点选择一遍后的全部的总和是多少。</p>
-<h2 id="input"><a class="markdownIt-Anchor" href="#input"></a> Input</h2>
-<p>第一行整数 <em>n</em>,<em>m</em>, 表示线段树维护的原序列的长度，询问次数。</p>
-<p>第二行 n*(1≤<em>n</em>≤217*) 个数，表示原序列。</p>
-<p>接下来 m(1≤<em>m</em>≤100000) 行，每行三个数 l,r,x<em>l</em>,<em>r</em>,<em>x</em> 表示对区间[l,r][<em>l</em>,<em>r</em>] 加上 x<em>x</em></p>
-<h2 id="output"><a class="markdownIt-Anchor" href="#output"></a> Output</h2>
+<h2 id="input">Input</h2>
+<p>第一行整数 <em>n</em>,<em>m</em>,
+表示线段树维护的原序列的长度，询问次数。</p>
+<p>第二行 n<em>(1≤</em>n<em>≤217</em>) 个数，表示原序列。</p>
+<p>接下来 m(1≤<em>m</em>≤100000) 行，每行三个数
+l,r,x<em>l</em>,<em>r</em>,<em>x</em>
+表示对区间[l,r][<em>l</em>,<em>r</em>] 加上 x<em>x</em></p>
+<h2 id="output">Output</h2>
 <p>共 m<em>m</em> 行，表示查询的权值和。</p>
-<h2 id="sample-input"><a class="markdownIt-Anchor" href="#sample-input"></a> Sample Input</h2>
+<h2 id="sample-input">Sample Input</h2>
 <figure class="highlight basic"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">8 </span><span class="hljs-number">2</span> <br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">3</span> <span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">8</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
-<h2 id="sample-output"><a class="markdownIt-Anchor" href="#sample-output"></a> Sample Output</h2>
+<h2 id="sample-output">Sample Output</h2>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">720<br>960<br></code></pre></td></tr></table></figure>
-<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<h2 id="思路">思路</h2>
 <p>区间修改，区间求和，但是这题不用写查询，因为从所有叶子节点到根节点的链的和为根节点的权值*(2*n-1)</p>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<h2 id="代码">代码</h2>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">2e6</span>+<span class="hljs-number">10</span>;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls 2*x</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs 2*x+1</span><br><span class="hljs-type">long</span> <span class="hljs-type">long</span> a[N],tr[N&lt;&lt;<span class="hljs-number">2</span>],lazy[N&lt;&lt;<span class="hljs-number">2</span>];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(l==r) &#123;<br>		tr[x]=a[l];<br>		<span class="hljs-keyword">return</span> ;<br>	&#125;<br>	<span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-built_in">build</span>(ls,l,mid);<br>	<span class="hljs-built_in">build</span>(rs,mid+<span class="hljs-number">1</span>,r);<br>	tr[x]=tr[ls]+tr[rs];<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pushdown</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> len)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(lazy[x]) &#123;<br>		lazy[ls]+=lazy[x];<br>		lazy[rs]+=lazy[x];<br>		tr[ls]+=lazy[x]*len/<span class="hljs-number">2</span>;<br>		tr[rs]+=lazy[x]*len/<span class="hljs-number">2</span>;<br>		lazy[x]=<span class="hljs-number">0</span>;<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> L,<span class="hljs-type">int</span> R,<span class="hljs-type">int</span> v)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(l&gt;=L&amp;&amp;r&lt;=R) &#123;<br>		lazy[x]+=v;<br>		tr[x]+=v*(r-l+<span class="hljs-number">1</span>);<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">pushdown</span>(x,r-l+<span class="hljs-number">1</span>);<br>	<span class="hljs-type">int</span> mid=(l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span>(L&lt;=mid)<span class="hljs-built_in">update</span>(ls,l,mid,L,R,v);<br>	<span class="hljs-keyword">if</span>(mid&lt;R) <span class="hljs-built_in">update</span>(rs,mid+<span class="hljs-number">1</span>,r,L,R,v);<br>	tr[x]=tr[ls]+tr[rs];<br>&#125;<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> n,m;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,&amp;a[i]) ;<br>	<span class="hljs-built_in">build</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,n);<br>	<span class="hljs-keyword">while</span>(m--) &#123;<br>		<span class="hljs-type">long</span> <span class="hljs-type">long</span> l,r,v;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld%lld%lld&quot;</span>,&amp;l,&amp;r,&amp;v);<br>		<span class="hljs-built_in">update</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,n,l,r,v);<br>		<span class="hljs-comment">//cout&lt;&lt;tr[10]&lt;&lt;endl;</span><br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,tr[<span class="hljs-number">1</span>]*(<span class="hljs-number">1ll</span>*n*<span class="hljs-number">2</span><span class="hljs-number">-1</span>));<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">/*8 2</span><br><span class="hljs-comment">1 2 3 4 5 6 7 8</span><br><span class="hljs-comment">1 8 2</span><br><span class="hljs-comment">1 3 4</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
 
             </div>
@@ -460,6 +463,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
 
 
 

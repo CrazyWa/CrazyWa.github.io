@@ -16,12 +16,12 @@
   <meta name="author" content="Crzay_wa">
   <meta name="keywords" content="zh_CN">
   
-    <meta name="description" content="题意： 对于一个只包含 . 和 z 的矩阵，当以下条件满足时：  该矩阵的行数列数相等。 该矩阵的第一行与最后一行的字符全是 z。 该矩阵从右上角到左下角的对角线上的字符全是 z。  我们称其为 Z 矩阵。 现在给定一个 n×mn×m 的矩阵，请你计算它有多少个子矩阵是 Z 矩阵。  输入格式 第一行两个整数 nn , mm 分别表示矩阵的行数和列数 (1≤n,m≤3×103)(1≤n,m≤3×">
+    <meta name="description" content="题意： 对于一个只包含 . 和 z 的矩阵，当以下条件满足时：  该矩阵的行数列数相等。 该矩阵的第一行与最后一行的字符全是 z。 该矩阵从右上角到左下角的对角线上的字符全是 z。  我们称其为 Z 矩阵。 现在给定一个 n×mn×m 的矩阵，请你计算它有多少个子矩阵是 Z 矩阵。 输入格式 第一行两个整数 nn , mm 分别表示矩阵的行数和列数 (1≤n,m≤3×10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="“Z”型矩阵">
 <meta property="og:url" content="http://crzzywa.github.io/2022/03/24/%E2%80%9CZ%E2%80%9D%E5%9E%8B%E7%9F%A9%E9%98%B5/index.html">
 <meta property="og:site_name" content="Crazy_wa">
-<meta property="og:description" content="题意： 对于一个只包含 . 和 z 的矩阵，当以下条件满足时：  该矩阵的行数列数相等。 该矩阵的第一行与最后一行的字符全是 z。 该矩阵从右上角到左下角的对角线上的字符全是 z。  我们称其为 Z 矩阵。 现在给定一个 n×mn×m 的矩阵，请你计算它有多少个子矩阵是 Z 矩阵。  输入格式 第一行两个整数 nn , mm 分别表示矩阵的行数和列数 (1≤n,m≤3×103)(1≤n,m≤3×">
+<meta property="og:description" content="题意： 对于一个只包含 . 和 z 的矩阵，当以下条件满足时：  该矩阵的行数列数相等。 该矩阵的第一行与最后一行的字符全是 z。 该矩阵从右上角到左下角的对角线上的字符全是 z。  我们称其为 Z 矩阵。 现在给定一个 n×mn×m 的矩阵，请你计算它有多少个子矩阵是 Z 矩阵。 输入格式 第一行两个整数 nn , mm 分别表示矩阵的行数和列数 (1≤n,m≤3×10">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-24T09:11:58.000Z">
 <meta property="article:modified_time" content="2022-03-24T09:24:13.227Z">
@@ -252,30 +252,33 @@
             <h1 style="display: none">“Z”型矩阵</h1>
             
             <div class="markdown-body">
-              <h2 id="题意"><a class="markdownIt-Anchor" href="#题意"></a> 题意：</h2>
-<p>对于一个只包含 <code>.</code> 和 <code>z</code> 的矩阵，当以下条件满足时：</p>
-<ol>
+              <h2 id="题意">题意：</h2>
+<p>对于一个只包含 <code>.</code> 和 <code>z</code>
+的矩阵，当以下条件满足时：</p>
+<ol type="1">
 <li>该矩阵的行数列数相等。</li>
 <li>该矩阵的第一行与最后一行的字符全是 <code>z</code>。</li>
 <li>该矩阵从右上角到左下角的对角线上的字符全是 <code>z</code>。</li>
 </ol>
 <p>我们称其为 <code>Z</code> 矩阵。</p>
-<p>现在给定一个 n×mn×m 的矩阵，请你计算它有多少个子矩阵是 <code>Z</code> 矩阵。</p>
-<h3 id="输入格式"><a class="markdownIt-Anchor" href="#输入格式"></a> 输入格式</h3>
-<p>第一行两个整数 nn , mm 分别表示矩阵的行数和列数 (1≤n,m≤3×103)(1≤n,m≤3×103)。</p>
+<p>现在给定一个 n×mn×m 的矩阵，请你计算它有多少个子矩阵是 <code>Z</code>
+矩阵。</p>
+<h3 id="输入格式">输入格式</h3>
+<p>第一行两个整数 nn , mm 分别表示矩阵的行数和列数
+(1≤n,m≤3×103)(1≤n,m≤3×103)。</p>
 <p>接下来 nn 行, 每行包含 mm 个字符, 表示该矩阵。</p>
-<h3 id="输出格式"><a class="markdownIt-Anchor" href="#输出格式"></a> 输出格式</h3>
+<h3 id="输出格式">输出格式</h3>
 <p>输出一行一个整数表示 <code>Z</code> 矩阵的数量。</p>
-<h3 id="样例输入"><a class="markdownIt-Anchor" href="#样例输入"></a> 样例输入</h3>
+<h3 id="样例输入">样例输入</h3>
 <figure class="highlight erlang"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs erlang"><span class="hljs-number">4</span> <span class="hljs-number">4</span><br>zzzz<br>z.z.<br>.zz.<br>zzzz<br></code></pre></td></tr></table></figure>
-<h3 id="样例输出"><a class="markdownIt-Anchor" href="#样例输出"></a> 样例输出</h3>
+<h3 id="样例输出">样例输出</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">14<br></code></pre></td></tr></table></figure>
-<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路：</h2>
+<h2 id="思路">思路：</h2>
 <p>好题，但不会！看题解学的，具体过程参考这位大佬的知乎。</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/486600382">https://zhuanlan.zhihu.com/p/486600382</a></p>
+<p>https://zhuanlan.zhihu.com/p/486600382</p>
 <p>简单说一下就是遍历对角线，在对角线上建树状数组，将每个连续的“z”看作一段，离线维护线段上每点的左右“z”各能到达的最远位置。然后遍历这个线段，维护每个点能到达后续点的的贡献，凡是能到达的后续点都可以利用到此点的贡献。(看不懂就看原dalao的知乎就完了)</p>
 <p>然后贴出我的代码，虽然和大佬的代码基本一样，但是因为原代码的树状数组部分没给，我的写法与dalao还有一丝丝不同。</p>
-<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码：</h2>
+<h2 id="代码">代码：</h2>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">3e3</span>+<span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> g[N][N],L[N][N],R[N][N],t[N];<br>pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;line[<span class="hljs-number">2</span>*N];<br>vector&lt;<span class="hljs-type">int</span>&gt;del[<span class="hljs-number">2</span>*N];<br><span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;<br><span class="hljs-type">long</span> <span class="hljs-type">long</span> ans=<span class="hljs-number">0</span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-keyword">return</span> x&amp;(-x);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> L,<span class="hljs-type">int</span> R)</span></span>&#123;<br>	<span class="hljs-type">int</span> s1=<span class="hljs-number">0</span>,s2=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(L&gt;<span class="hljs-number">0</span>)&#123;<br>		s1+=t[L];<br>		L-=<span class="hljs-built_in">lowbit</span>(L);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(R&gt;<span class="hljs-number">0</span>)&#123;<br>		s2+=t[R];<br>		R-=<span class="hljs-built_in">lowbit</span>(R);<br>	&#125;<br>	<span class="hljs-keyword">return</span> s2-s1;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> w)</span></span>&#123;<br>	<span class="hljs-keyword">while</span>(x&lt;=cnt)&#123;<br>		t[x]+=w;<br>		x+=<span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-comment">//cout&lt;&lt;endl;</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=cnt;i++)&#123;<br>		<span class="hljs-type">int</span> L=line[i].first,R=line[i].second;<br>		ans+=<span class="hljs-built_in">query</span>(<span class="hljs-built_in">max</span>(<span class="hljs-number">1</span>,i-R+<span class="hljs-number">1</span>)<span class="hljs-number">-1</span>,i);<br>		<span class="hljs-keyword">if</span>(L&gt;<span class="hljs-number">1</span>)<span class="hljs-built_in">add</span>(i,<span class="hljs-number">1</span>);<br>		<span class="hljs-comment">//cout&lt;&lt;ans&lt;&lt;&#x27; &#x27;&lt;&lt;i&lt;&lt;&#x27; &#x27;&lt;&lt;L&lt;&lt;&#x27; &#x27;&lt;&lt;R&lt;&lt;endl;</span><br>		<span class="hljs-keyword">if</span>(L&gt;<span class="hljs-number">1</span>)del[<span class="hljs-built_in">min</span>(cnt,i+L<span class="hljs-number">-1</span>)].<span class="hljs-built_in">push_back</span>(i);<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> x:del[i])<span class="hljs-built_in">add</span>(x,<span class="hljs-number">-1</span>);<br>	&#125;<br>	<span class="hljs-built_in">memset</span>(t,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(t));<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=cnt;i++)del[i].<span class="hljs-built_in">clear</span>();<br>	cnt=<span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> n,m;<br>	cin&gt;&gt;n&gt;&gt;m;<br>	<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++)&#123;<br>			<span class="hljs-type">char</span> c;<br>			cin&gt;&gt;c;<br>			g[i][j]=c==<span class="hljs-string">&#x27;z&#x27;</span>;<br>			ans+=c==<span class="hljs-string">&#x27;z&#x27;</span>;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++)&#123;<br>			<span class="hljs-keyword">if</span>(g[i][j])L[i][j]=L[i][j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>;<br>		&#125;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=m;j&gt;=<span class="hljs-number">1</span>;j--)&#123;<br>			<span class="hljs-keyword">if</span>(g[i][j])R[i][j]=R[i][j+<span class="hljs-number">1</span>]+<span class="hljs-number">1</span>;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> d=<span class="hljs-number">2</span>;d&lt;=n+m;d++)&#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-built_in">max</span>(<span class="hljs-number">1</span>,d-m);i&lt;=<span class="hljs-built_in">min</span>(n,d<span class="hljs-number">-1</span>);i++)&#123;<br>			<span class="hljs-type">int</span> j=d-i;<br>			<span class="hljs-keyword">if</span>(!g[i][j])&#123;<br>				<span class="hljs-keyword">if</span>(cnt)<span class="hljs-built_in">solve</span>();<br>			&#125;<span class="hljs-keyword">else</span>&#123;<br>				line[++cnt]=&#123;L[i][j],R[i][j]&#125;;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">if</span>(cnt)<span class="hljs-built_in">solve</span>();<br>	&#125;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
             </div>
@@ -473,6 +476,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
 
 
 
