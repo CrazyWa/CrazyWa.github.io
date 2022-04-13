@@ -16,22 +16,22 @@
   <meta name="author" content="Crzay_wa">
   <meta name="keywords" content="zh_CN">
   
-    <meta name="description" content="鸽子给了个链接https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;paste&#x2F;btx82uof 但是我今天下午还有个题没写好，调一下午QAQ，难顶，而且一到晚上环瘾就犯，今天tes打v5现在赛点 先做了一题，稍微总结下 数列分块入门 2 题目链接 题目描述 给出一个长为 的数列，以及 个操作，操作涉及区间加法，询问区间内小于某个值 的元素个数。 输入格式 第一行输入一个数字 。">
+    <meta name="description" content="区间小于等于k的个数 例题 在给定 N 长的数组 A 中进行 Q 次询问 [Li,Ri] 区间中不大于 Hi 的元素个数 思路 做这个题也是花了很久时间啊，做题看着代码改了一下午加一晚上，中间还做了道分块基础，今早还做不出，中午终于改对，感觉自己蠢爆了 然后讲思路，一般思路都是for套个while，但是这套我还没完全理解，下次更 这里是学习的这位的思路，严格鸽，日更大佬orz 考虑">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数列分块入门2">
-<meta property="og:url" content="http://crzzywa.github.io/2022/04/12/2/index.html">
+<meta property="og:title" content="区间小于等于k的个数">
+<meta property="og:url" content="http://crzzywa.github.io/2022/04/13/%E5%8C%BA%E9%97%B4%E5%B0%8F%E4%BA%8E%E7%AD%89%E4%BA%8Ek%E7%9A%84%E4%B8%AA%E6%95%B0/index.html">
 <meta property="og:site_name" content="Crazy_wa">
-<meta property="og:description" content="鸽子给了个链接https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;paste&#x2F;btx82uof 但是我今天下午还有个题没写好，调一下午QAQ，难顶，而且一到晚上环瘾就犯，今天tes打v5现在赛点 先做了一题，稍微总结下 数列分块入门 2 题目链接 题目描述 给出一个长为 的数列，以及 个操作，操作涉及区间加法，询问区间内小于某个值 的元素个数。 输入格式 第一行输入一个数字 。">
+<meta property="og:description" content="区间小于等于k的个数 例题 在给定 N 长的数组 A 中进行 Q 次询问 [Li,Ri] 区间中不大于 Hi 的元素个数 思路 做这个题也是花了很久时间啊，做题看着代码改了一下午加一晚上，中间还做了道分块基础，今早还做不出，中午终于改对，感觉自己蠢爆了 然后讲思路，一般思路都是for套个while，但是这套我还没完全理解，下次更 这里是学习的这位的思路，严格鸽，日更大佬orz 考虑">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-12T12:27:55.000Z">
-<meta property="article:modified_time" content="2022-04-12T13:12:41.835Z">
+<meta property="article:published_time" content="2022-04-13T06:29:06.000Z">
+<meta property="article:modified_time" content="2022-04-13T07:12:41.614Z">
 <meta property="article:author" content="Crzay_wa">
-<meta property="article:tag" content="分块">
-<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="树状数组">
+<meta property="article:tag" content="模板">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>数列分块入门2 - Crazy_wa</title>
+  <title>区间小于等于k的个数 - Crazy_wa</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="数列分块入门2">
+            <span class="h2" id="subtitle" title="区间小于等于k的个数">
               
             </span>
 
@@ -199,8 +199,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-12 20:27" pubdate>
-        2022年4月12日 晚上
+      <time datetime="2022-04-13 14:29" pubdate>
+        2022年4月13日 下午
       </time>
     </span>
   
@@ -210,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      405 字
+      2k 字
     </span>
   
 
@@ -219,7 +219,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      17 分钟
     </span>
   
 
@@ -248,36 +248,23 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数列分块入门2</h1>
+            <h1 style="display: none">区间小于等于k的个数</h1>
             
             <div class="markdown-body">
-              <p>鸽子给了个链接https://www.luogu.com.cn/paste/btx82uof</p>
-<p><del>但是我今天下午还有个题没写好，调一下午QAQ，难顶，而且一到晚上环瘾就犯，今天tes打v5现在赛点</del></p>
-<p>先做了一题，稍微总结下</p>
-<h2 id="数列分块入门-2">数列分块入门 2</h2>
-<h2 id="题目链接"><a target="_blank" rel="noopener" href="https://loj.ac/p/6278">题目链接</a></h2>
-<h2 id="题目描述">题目描述</h2>
-<p>给出一个长为 的数列，以及
-个操作，操作涉及区间加法，询问区间内小于某个值 的元素个数。</p>
-<h2 id="输入格式">输入格式</h2>
-<p>第一行输入一个数字 。</p>
-<p>第二行输入 个数字，第 个数字为 ，以空格隔开。</p>
-<p>接下来输入 行询问，每行输入四个数字 、、、，以空格隔开。</p>
-<p>若 ，表示将位于 的之间的数字都加 。</p>
-<p>若 ，表示询问 中，小于 的数字的个数。</p>
-<h2 id="输出格式">输出格式</h2>
-<p>对于每次询问，输出一行一个数字表示答案。</p>
-<h2 id="样例输入">样例输入</h2>
-<figure class="highlight basic"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><pre><code class="hljs basic"><span class="hljs-number">4</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-symbol">0 </span><span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">2</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span><br><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
-<h2 id="样例输出">样例输出</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">3<br>0<br>2<br></code></pre></td></tr></table></figure>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
-<h2 id="样例输出-1">样例输出</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">3<br>0<br>2<br></code></pre></td></tr></table></figure>
-<h2 id="数据范围与提示">数据范围与提示</h2>
-<p>1&lt;=n&lt;=50000,-2<sup>31</sup>&lt;ans,a<sub>i</sub>&lt;2<sup>31</sup></p>
+              <h1 id="区间小于等于k的个数">区间小于等于k的个数</h1>
+<h2 id="例题"><a
+target="_blank" rel="noopener" href="http://oj.daimayuan.top/problem/464">例题</a></h2>
+<p>在给定 N 长的数组 A 中进行 Q 次询问 [Li,Ri]
+区间中<strong>不大于</strong> Hi 的元素个数</p>
 <h2 id="思路">思路</h2>
-<p>对一些区间操作我们可以将线段先分块再暴力</p>
+<p>做这个题也是花了很久时间啊，做题看着代码改了一下午加一晚上，中间还做了道分块基础，今早还做不出，中午终于改对，感觉自己蠢爆了</p>
+<p>然后讲思路，一般思路都是for套个while，但是这套我还没完全理解，下次更</p>
+<p>这里是学习的这位的思路，<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/475131851">严格鸽</a>，日更大佬orz</p>
+<p>考虑到我们如果暴力的遍历每个区间中的的数，重叠的点被多次访问，浪费了时间。</p>
+<p>于是我们换个角度，我们只把每个点遍历一遍，求点对区间的贡献。点对区间的贡献可以用前缀和来做，我们用树状数组动态地做这个前缀和。</p>
+<p>要做到这点，我们先对A数组进行离散化。然后将查询的操作按L，R分开来做，一个点如果是L，对区间的贡献乘-1，如果是R就正常加上，这样对于一个查询我们就求出了他的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">5e6</span>+<span class="hljs-number">10</span>;<br><span class="hljs-keyword">namespace</span> ls &#123; <span class="hljs-comment">//离散模板</span><br>	<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br>	<span class="hljs-type">const</span> <span class="hljs-type">int</span> Nn=<span class="hljs-number">5e6</span>+<span class="hljs-number">10</span>;<br>	<span class="hljs-type">int</span> C[Nn],L[Nn],A[Nn];<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ls</span><span class="hljs-params">(<span class="hljs-type">int</span> *f,<span class="hljs-type">int</span> *a,<span class="hljs-type">int</span> n)</span> </span>&#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;n; i++)A[i]=a[i+<span class="hljs-number">1</span>];<br>		<span class="hljs-built_in">memcpy</span>(C,A,<span class="hljs-built_in">sizeof</span>(A));<br>		<span class="hljs-built_in">sort</span>(C,C+n);<br>		<span class="hljs-type">int</span> l=<span class="hljs-built_in">unique</span>(C,C+n)-C;<br>		<span class="hljs-comment">//int l=n;</span><br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;n; i++) &#123;<br>			L[i]=<span class="hljs-built_in">lower_bound</span>(C,C+l,A[i])-C+<span class="hljs-number">1</span>;<br>		&#125;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;n; i++)f[i+<span class="hljs-number">1</span>]=L[i];<br>	&#125;<br>&#125; <span class="hljs-type">int</span> n,m;<br><span class="hljs-type">int</span> L[N],R[N],a[N],H[N],f[N],ans[N],c[N];<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span> &#123;<br>	<span class="hljs-type">int</span> k,x,id;<br>&#125;;<br>vector&lt;node&gt;g[N];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> (x&amp;(-x));<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>	<span class="hljs-type">int</span> ret=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(x&gt;<span class="hljs-number">0</span>) &#123;<br>		ret+=c[x];<br>		x-=<span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>	<span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> d)</span> </span>&#123;<br>	<span class="hljs-keyword">while</span>(x&lt;=n+m) &#123;<br>		c[x]+=d;<br>		x+=<span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> T;<br>	cin&gt;&gt;T;<br>	<span class="hljs-keyword">while</span>(T--) &#123;<br>		cin&gt;&gt;n&gt;&gt;m;<br>		<span class="hljs-built_in">memset</span>(c,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(c));<br>		<span class="hljs-built_in">memset</span>(ans,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(ans));<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++)g[i].<span class="hljs-built_in">clear</span>();<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++)cin&gt;&gt;a[i];<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=m; i++)cin&gt;&gt;L[i]&gt;&gt;R[i]&gt;&gt;a[n+i];<br>		ls::<span class="hljs-built_in">ls</span>(f,a,n+m);<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++)a[i]=f[i];<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=m; i++)H[i]=f[n+i];<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=m; i++) &#123;<br>			g[L[i]<span class="hljs-number">-1</span>].<span class="hljs-built_in">push_back</span>(&#123;<span class="hljs-number">-1</span>,H[i],i&#125;);<br>			g[R[i]].<span class="hljs-built_in">push_back</span>(&#123;<span class="hljs-number">1</span>,H[i],i&#125;);<br>		&#125;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++) &#123;<br>			<span class="hljs-built_in">update</span>(a[i],<span class="hljs-number">1</span>);<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> v:g[i]) &#123;<br>				ans[v.id]+=v.k*<span class="hljs-built_in">query</span>(v.x);<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=m; i++)cout&lt;&lt;ans[i]&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>		cout&lt;&lt;<span class="hljs-string">&quot;\n&quot;</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -289,7 +276,7 @@
                     
                       <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AE%B0/">笔记</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/%E6%A8%A1%E6%9D%BF/">模板</a>
                     
                   </div>
                 
@@ -297,9 +284,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%9D%97/">分块</a>
+                      <a class="hover-with-bg" href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">树状数组</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>
                     
                   </div>
                 
@@ -316,18 +303,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/13/%E5%8C%BA%E9%97%B4%E5%B0%8F%E4%BA%8E%E7%AD%89%E4%BA%8Ek%E7%9A%84%E4%B8%AA%E6%95%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">区间小于等于k的个数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/02/%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95/">
-                        <span class="hidden-mobile">莫队算法</span>
+                      <a href="/2022/04/12/2/">
+                        <span class="hidden-mobile">数列分块入门2</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
