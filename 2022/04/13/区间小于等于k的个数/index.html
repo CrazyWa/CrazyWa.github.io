@@ -252,15 +252,13 @@
             
             <div class="markdown-body">
               <h1 id="区间小于等于k的个数">区间小于等于k的个数</h1>
-<h2 id="例题"><a
-target="_blank" rel="noopener" href="http://oj.daimayuan.top/problem/464">例题</a></h2>
+<h2 id="例题"><a target="_blank" rel="noopener" href="http://oj.daimayuan.top/problem/464">例题</a></h2>
 <p>在给定 N 长的数组 A 中进行 Q 次询问 [Li,Ri]
 区间中<strong>不大于</strong> Hi 的元素个数</p>
 <h2 id="思路">思路</h2>
 <p>做这个题也是花了很久时间啊，做题看着代码改了一下午加一晚上，中间还做了道分块基础，今早还做不出，中午终于改对，感觉自己蠢爆了</p>
 <p>然后讲思路，一般思路都是for套个while，但是这套我还没完全理解，下次更</p>
-<p>这里是学习的这位的思路，<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/475131851">严格鸽</a>，日更大佬orz</p>
+<p>这里是学习的这位的思路，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/475131851">严格鸽</a>，日更大佬orz</p>
 <p>考虑到我们如果暴力的遍历每个区间中的的数，重叠的点被多次访问，浪费了时间。</p>
 <p>于是我们换个角度，我们只把每个点遍历一遍，求点对区间的贡献。点对区间的贡献可以用前缀和来做，我们用树状数组动态地做这个前缀和。</p>
 <p>要做到这点，我们先对A数组进行离散化。然后将查询的操作按L，R分开来做，一个点如果是L，对区间的贡献乘-1，如果是R就正常加上，这样对于一个查询我们就求出了他的值。</p>

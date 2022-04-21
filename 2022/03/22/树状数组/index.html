@@ -16,24 +16,24 @@
   <meta name="author" content="Crzay_wa">
   <meta name="keywords" content="zh_CN">
   
-    <meta name="description" content="区间信息维护查询 一、二叉索引树(树状数组)（Binary Indexed Tree,BIT) BIT支持两种操作 1.update(x):修改&#x3D;&#x3D;单点&#x3D;&#x3D;值 2.query(L,R)：查询(L,R)区间和 实现方式： 首先我们介绍一下lowbit(x) lowbit(x)表示x的二进制表达式中&#x3D;&#x3D;最右边的1所对应的值&#x3D;&#x3D; 程序实现为lowbit(x)&#x3D;{return x&amp;am">
+    <meta name="description" content="区间信息维护查询 一、二叉索引树(树状数组)（Binary Indexed Tree,BIT) BIT支持两种操作 1.update(x):修改单点值 2.query(L,R)：查询(L,R)区间和 实现方式： 首先我们介绍一下lowbit(x) lowbit(x)表示x的二进制表达式中最右边的1所对应的值 程序实现为lowbit(x)&#x3D;{return x&amp;(-x)}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="区间信息维护查询">
-<meta property="og:url" content="http://crzzywa.github.io/2022/03/22/%E5%8C%BA%E9%97%B4%E4%BF%A1%E6%81%AF%E7%BB%B4%E6%8A%A4%E6%9F%A5%E8%AF%A2/index.html">
+<meta property="og:title" content="树状数组">
+<meta property="og:url" content="http://crzzywa.github.io/2022/03/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Crazy_wa">
-<meta property="og:description" content="区间信息维护查询 一、二叉索引树(树状数组)（Binary Indexed Tree,BIT) BIT支持两种操作 1.update(x):修改&#x3D;&#x3D;单点&#x3D;&#x3D;值 2.query(L,R)：查询(L,R)区间和 实现方式： 首先我们介绍一下lowbit(x) lowbit(x)表示x的二进制表达式中&#x3D;&#x3D;最右边的1所对应的值&#x3D;&#x3D; 程序实现为lowbit(x)&#x3D;{return x&amp;am">
+<meta property="og:description" content="区间信息维护查询 一、二叉索引树(树状数组)（Binary Indexed Tree,BIT) BIT支持两种操作 1.update(x):修改单点值 2.query(L,R)：查询(L,R)区间和 实现方式： 首先我们介绍一下lowbit(x) lowbit(x)表示x的二进制表达式中最右边的1所对应的值 程序实现为lowbit(x)&#x3D;{return x&amp;(-x)}">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/blog/source/picture/bit示意.png">
+<meta property="og:image" content="http://crzzywa.github.io/2022/03/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/bit示意.png">
 <meta property="article:published_time" content="2022-03-22T14:28:31.000Z">
-<meta property="article:modified_time" content="2022-04-21T10:52:21.146Z">
+<meta property="article:modified_time" content="2022-04-21T11:37:30.430Z">
 <meta property="article:author" content="Crzay_wa">
 <meta property="article:tag" content="树状数组">
 <meta property="article:tag" content="区间操作">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:/blog/source/picture/bit示意.png">
+<meta name="twitter:image" content="http://crzzywa.github.io/2022/03/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/bit示意.png">
   
   
-  <title>区间信息维护查询 - Crazy_wa</title>
+  <title>树状数组 - Crazy_wa</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -191,7 +191,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="区间信息维护查询">
+            <span class="h2" id="subtitle" title="树状数组">
               
             </span>
 
@@ -250,63 +250,52 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">区间信息维护查询</h1>
+            <h1 style="display: none">树状数组</h1>
             
             <div class="markdown-body">
               <h1 id="区间信息维护查询">区间信息维护查询</h1>
-<h2
-id="一二叉索引树树状数组binary-indexed-treebit">一、二叉索引树(树状数组)（Binary
+<h2 id="一二叉索引树树状数组binary-indexed-treebit">一、二叉索引树(树状数组)（Binary
 Indexed Tree,BIT)</h2>
-<h4 id="bit支持两种操作">BIT支持两种操作</h4>
-<h6 id="updatex修改单点值">1.update(x):修改==单点==值</h6>
+<h3 id="bit支持两种操作">BIT支持两种操作</h3>
+<h6 id="updatex修改单点值">1.update(x):修改<code>单点</code>值</h6>
 <h6 id="querylr查询lr区间和">2.query(L,R)：查询(L,R)区间和</h6>
-<h4 id="实现方式">实现方式：</h4>
-<h5 id="首先我们介绍一下lowbitx">首先我们介绍一下lowbit(x)</h5>
-<h5
-id="lowbitx表示x的二进制表达式中最右边的1所对应的值">lowbit(x)表示x的二进制表达式中==最右边的1所对应的值==</h5>
-<h5 id="程序实现为lowbitxreturn-x-x">程序实现为lowbit(x)={return
-x&amp;(-x)}</h5>
-<p>原理就是计算机的整数用补码表示，所以==-x就是x按位取反，末尾加1==</p>
+<h3 id="实现方式">实现方式：</h3>
+<p>首先我们介绍一下lowbit(x)</p>
+<p>lowbit(x)表示x的二进制表达式中<code>最右边的1所对应的值</code></p>
+<p>程序实现为lowbit(x)={return x&amp;(-x)}</p>
+<p>原理就是计算机的整数用补码表示，所以<code>-x就是x按位取反，末尾加1</code></p>
 <figure>
-<img src="D:\blog\source\picture\bit示意.png" srcset="/img/loading.gif" lazyload alt="bit示意" />
+<img src="/2022/03/22/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/bit示意.png" srcset="/img/loading.gif" lazyload alt="bit示意">
 <figcaption aria-hidden="true">bit示意</figcaption>
 </figure>
 <p>上图就是典型的BIT</p>
-<h5
-id="通过观查我们发现对于节点i如果i是右儿子i的父节点为i-lowbiti如果i是左儿子i的父节点为ilowbiti.">通过观查我们发现对于节点i,如果i是右儿子,i的父节点为i-lowbit(i),如果i是左儿子,i的父节点为i+lowbit(i).</h5>
+<p><strong>通过观察我们发现对于节点i,如果i是右儿子,i的父节点为i-lowbit(i),如果i是左儿子,i的父节点为i+lowbit(i).</strong></p>
 <p>然后我们构造一个辅助数组C</p>
-<h5
-id="ciai-lowbiti1ai-lowbiti1...ai">C<sub>i</sub>=A<sub>i-lowbit(i)+1</sub>+A<sub>i-lowbit(i)+1</sub>+...+A<sub>i</sub></h5>
-<h5
-id="即ci为区间i-lowbiti1i的和上图的长方形块">即C<sub>i</sub>为区间[i-lowbit(i)+1,i]的和(上图的长方形块)</h5>
+<p><strong>C<sub>i</sub>=A<sub>i-lowbit(i)+1</sub>+A<sub>i-lowbit(i)+1</sub>+...+A<sub>i</sub></strong></p>
+<p><strong>即C<sub>i</sub>为区间[i-lowbit(i)+1,i]的和(上图的长方形块)</strong></p>
 <p>有了这些准备后我们就要开始思考如何进行add和query的操作</p>
-<h4 id="querylr">query(L,R):</h4>
+<h3 id="querylr">query(L,R):</h3>
 <p>根据前缀和的思路，我们想到可以分别求出前缀和S[R]和S[L]得到query()的值</p>
 <p><u>以S[L]为例</u>，L以二进制表示，则可以表示为以2为底的幂的和</p>
-<h5
-id="所以slcacb...cz">所以S[L]=C<sub>a</sub>+C<sub>b</sub>+...+C<sub>z</sub></h5>
+<p>所以S[L]=C<sub>a</sub>+C<sub>b</sub>+...+C<sub>z</sub></p>
 <p>要实现这一操作，就要从L开始将S[L],S[L-lowbit(L)]...加入S[L]，直到L==0</p>
 <p>代码如下</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-type">int</span> ret=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(x&gt;<span class="hljs-number">0</span>)&#123;<br>        ret+=a[x];<br>        x-=<span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>    <span class="hljs-keyword">return</span> ret;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="updatex">update(x):</h4>
+<h3 id="updatex">update(x):</h3>
 <p>对单一值更新之后，要对包含x的C<sub>i</sub>都进行更新</p>
 <p>实现操作，要从x向上，直到x&gt;n</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-keyword">while</span>(x&lt;=n)&#123;<br>        C[x]++;<span class="hljs-comment">//更新</span><br>        x+=<span class="hljs-built_in">lowbit</span>(x);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="例题-ping-pong">例题 Ping pong</h3>
+<h2 id="例题-ping-pong">例题 Ping pong</h2>
 <p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/UVALive-4329">UVALive -
 4329</a></p>
-<h5
-id="首先选手的位置不能改变而对于某个选手i假设他为裁判此时在他之前比他小的有ci个在他之后比他小的有di个那么i选手做裁判的情况就有cin-i-dii-ci-1-di">首先，选手的位置不能改变。而对于某个选手i，假设他为裁判，此时在他之前比他小的有c<sub>i</sub>个,在他之后比他小的有d<sub>i</sub>个，那么i选手做裁判的情况就有c<sub>i</sub><em>(n-i-d<sub>i</sub>)+(i-c<sub>i</sub>-1)
-</em>d<sub>i</sub></h5>
-<h5
-id="问题转换为求ci和di">问题转换为求c<sub>i</sub>和d<sub>i</sub></h5>
-<h5
-id="由小到大遍历1-n每移动一位就在xai并求xai的前缀和这是一个经典的bit问题">由小到大遍历1-n，每移动一位就在x[a[i]]++,并求x[a[i]]的前缀和，这是一个经典的BIT问题</h5>
+<p>首先，选手的位置不能改变。而对于某个选手i，假设他为裁判，此时在他之前比他小的有c<sub>i</sub>个,在他之后比他小的有d<sub>i</sub>个，那么i选手做裁判的情况就有c<sub>i</sub><em>(n-i-d<sub>i</sub>)+(i-c<sub>i</sub>-1)
+</em>d<sub>i</sub></p>
+<p>问题转换为求c<sub>i</sub>和d<sub>i</sub></p>
+<p>由小到大遍历1-n，每移动一位就在x[a[i]]++,并求x[a[i]]的前缀和，这是一个经典的BIT问题</p>
 <p>代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">100100</span>;<br><span class="hljs-type">int</span> a[N],b[N],c[N],d[N];<br><span class="hljs-type">int</span> n;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> x&amp;(-x);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>	<span class="hljs-type">int</span> ret=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(x) &#123;<br>		ret+=b[x];<br>		x-=<span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>	<span class="hljs-keyword">return</span> ret;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> d)</span> </span>&#123;<br>	<span class="hljs-keyword">while</span>(x&lt;=N<span class="hljs-number">-1</span>) &#123;<br>		b[x]+=d;<br>		x+=<span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> T;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;T);<br>	<span class="hljs-keyword">while</span>(T--) &#123;<br>		<span class="hljs-built_in">memset</span>(c,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(c));<br>		<span class="hljs-built_in">memset</span>(d,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(d));<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++)<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;a[i]);<br>		<span class="hljs-built_in">memset</span>(b,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(b));<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++) &#123;<br>			<span class="hljs-built_in">add</span>(a[i],<span class="hljs-number">1</span>);<br>			c[i]=<span class="hljs-built_in">sum</span>(a[i]<span class="hljs-number">-1</span>);<br>			<span class="hljs-comment">//printf(&quot;%d &quot;,c[i]);</span><br>		&#125;<br>		<span class="hljs-comment">//printf(&quot;\n&quot;);</span><br>		<span class="hljs-built_in">memset</span>(b,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(b));<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n; i&gt;=<span class="hljs-number">1</span>; i--) &#123;<br>			<span class="hljs-built_in">add</span>(a[i],<span class="hljs-number">1</span>);<br>			d[i]=<span class="hljs-built_in">sum</span>(a[i]<span class="hljs-number">-1</span>);<br>			<span class="hljs-comment">//printf(&quot;%d &quot;,d[i]);</span><br>		&#125;<br>		<span class="hljs-comment">//printf(&quot;\n&quot;);</span><br>		<span class="hljs-type">long</span> <span class="hljs-type">long</span> ret=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;n;i++)&#123;<br>			ret+=c[i]*(n-i-d[i])+(i-c[i]<span class="hljs-number">-1</span>)*d[i];<br>		&#125;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ret);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="总结">总结</h3>
-<h4
-id="bit本质上还是前缀和他通过lowbit将前缀和数组拆分从而使修改的复杂度从on降到ologn从而使动态的区间问题的整体复杂度降至onlogn">BIT本质上还是前缀和，他通过lowbit将前缀和数组拆分，从而使修改的复杂度从O(n)降到O(logn)。从而使动态的区间问题的整体复杂度降至O(nlogn)</h4>
+<h2 id="总结">总结</h2>
+<p>BIT本质上还是前缀和，他通过lowbit将前缀和数组拆分，从而使修改的复杂度从O(n)降到O(logn)。从而使动态的区间问题的整体复杂度降至O(nlogn)</p>
 
             </div>
             <hr>
