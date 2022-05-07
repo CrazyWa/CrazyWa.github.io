@@ -53,9 +53,9 @@
     
     <tags>
       
-      <tag>模板</tag>
-      
       <tag>cdq分治</tag>
+      
+      <tag>模板</tag>
       
       <tag>数据结构</tag>
       
@@ -170,7 +170,7 @@
     <link href="/2022/04/02/dfs%E5%BA%8F-1/"/>
     <url>/2022/04/02/dfs%E5%BA%8F-1/</url>
     
-    <content type="html"><![CDATA[<h2 id="定义">定义</h2><p>dfs序是对树进行dfs遍历得到的一个时间戳序列</p><p>dfs的模板</p><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> tot,in[N],out[N];<span class="hljs-comment">//in表示进入节点的时间戳，out表示出节点的时间戳，in可以表示区间的左边界l，out可以表示区间的右边界r</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123;<br>    in[u]=++tot;  <br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;t[x].<span class="hljs-built_in">size</span>();i++)&#123;  <br>        <span class="hljs-type">int</span> v=t[x][i];  <br>        <span class="hljs-built_in">dfs</span>(v);  <br>    &#125; <br>    out[u]=tot;<br>&#125;<br></code></pre></td></tr></table></figure><p>树化成线段举例如下图</p><figure><img src="/2022/04/02/dfs%E5%BA%8F-1/dfs序-1\dfs序.png" alt="dfs序"><figcaption aria-hidden="true">dfs序</figcaption></figure><h2 id="应用">应用</h2><p>暂时没学到其他应用，先大体了解这个可以化树为线段的性质。</p><p>注意，节点化为线段之后的序号为in[u]。</p><p>不过既然可以化作线段，那么关于线段的操作都可以做，比如树状数组和线段树以及莫队。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="定义">定义</h2><p>dfs序是对树进行dfs遍历得到的一个时间戳序列</p><p>dfs的模板</p><figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> tot,in[N],out[N];<span class="hljs-comment">//in表示进入节点的时间戳，out表示出节点的时间戳，in可以表示区间的左边界l，out可以表示区间的右边界r</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span></span>&#123;<br>    in[u]=++tot;  <br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;t[x].<span class="hljs-built_in">size</span>();i++)&#123;  <br>        <span class="hljs-type">int</span> v=t[x][i];  <br>        <span class="hljs-built_in">dfs</span>(v);  <br>    &#125; <br>    out[u]=tot;<br>&#125;<br></code></pre></td></tr></table></figure><p>树化成线段举例如下图</p><figure><img src="/2022/04/02/dfs%E5%BA%8F-1/dfs序.png" alt="dfs序"><figcaption aria-hidden="true">dfs序</figcaption></figure><h2 id="应用">应用</h2><p>暂时没学到其他应用，先大体了解这个可以化树为线段的性质。</p><p>注意，节点化为线段之后的序号为in[u]。</p><p>不过既然可以化作线段，那么关于线段的操作都可以做，比如树状数组和线段树以及莫队。</p>]]></content>
     
     
     <categories>
@@ -184,9 +184,9 @@
     
     <tags>
       
-      <tag>dfs序</tag>
-      
       <tag>模板</tag>
+      
+      <tag>dfs序</tag>
       
     </tags>
     
