@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Crzay_wa">
+  <meta name="keywords" content="zh_CN">
+  
+    <meta name="description" content="线段树优化建图 这是利用线段树优化建图的算法，当出现区间1-&gt;n的区间连边操作时，一般的图就需要O(n)的复杂度，但是利用线段树就可以做到O(logn),很好用。 例题 题意 Rick 和他的同事们做出了一种新的带放射性的婴儿食品(???根据图片和原文的确如此...)，与此同时很多坏人正追赶着他们。因此 Rick 想在坏人们捉到他之前把他的遗产留给 Morty。 在宇宙中一共有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树优化建图">
+<meta property="og:url" content="http://crzzywa.github.io/2022/05/18/%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%BC%98%E5%8C%96%E5%BB%BA%E5%9B%BE/index.html">
+<meta property="og:site_name" content="Crazy_wa">
+<meta property="og:description" content="线段树优化建图 这是利用线段树优化建图的算法，当出现区间1-&gt;n的区间连边操作时，一般的图就需要O(n)的复杂度，但是利用线段树就可以做到O(logn),很好用。 例题 题意 Rick 和他的同事们做出了一种新的带放射性的婴儿食品(???根据图片和原文的确如此...)，与此同时很多坏人正追赶着他们。因此 Rick 想在坏人们捉到他之前把他的遗产留给 Morty。 在宇宙中一共有">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-18T05:45:57.000Z">
+<meta property="article:modified_time" content="2022-05-18T07:00:47.931Z">
+<meta property="article:author" content="Crzay_wa">
+<meta property="article:tag" content="模板">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="最短路">
+<meta property="article:tag" content="线段树">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>线段树优化建图 - Crazy_wa</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"crzzywa.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/picture/chainsawman.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="线段树优化建图">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Crzay_wa
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-18 13:45" pubdate>
+        2022年5月18日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">线段树优化建图</h1>
+            
+            <div class="markdown-body">
+              <h2 id="线段树优化建图">线段树优化建图</h2>
+<p>这是利用线段树优化建图的算法，当出现区间1-&gt;n的区间连边操作时，一般的图就需要O(n)的复杂度，但是利用线段树就可以做到O(logn),很好用。</p>
+<h2 id="例题"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF786B">例题</a></h2>
+<h3 id="题意">题意</h3>
+<p>Rick
+和他的同事们做出了一种新的带放射性的婴儿食品(???根据图片和原文的确如此...)，与此同时很多坏人正追赶着他们。因此
+Rick 想在坏人们捉到他之前把他的遗产留给 Morty。</p>
+<p>在宇宙中一共有 <em>n</em> 个星球标号为 1∼<em>n</em>。Rick
+现在身处于标号为 s 的星球(地球)但是他不知道 Morty 在哪里。</p>
+<p>众所周知，Rick
+有一个传送枪，他用这把枪可以制造出一个从他所在的星球通往其他星球(也包括自己所在的星球)的单行道路。但是由于他还在用免费版，因此这把枪的使用是有限制的。</p>
+<p>默认情况下他不能用这把枪开启任何传送门。在网络上有 q
+个售卖这些传送枪的使用方案。每一次你想要实施这个方案时你都可以购买它，但是每次购买后只能使用一次。每个方案的购买次数都是无限的。</p>
+<p>网络上一共有三种方案可供购买：</p>
+<ul>
+<li>开启一扇从星球 v 到星球 u的传送门；</li>
+<li>开启一扇从星球 v 到标号在[l,r]
+区间范围内任何一个星球的传送门。(即这扇传送门可以从一个星球出发通往多个星球)</li>
+<li>开启一扇从标号在 [l,r] 区间范围内任何一个星球到星球 v
+的传送门。(即这扇传送门可以从多个星球出发到达同一个星球)</li>
+</ul>
+<p>Rick 并不知道 Morty 在哪儿，但是 Unity 将要通知他 Morty
+的具体位置，并且他想要赶快找到通往所有星球的道路各一条并立刻出发。因此对于每一个星球(包括地球本身)他想要知道从地球到那个星球所需的最小钱数。</p>
+<h3 id="输入数据">输入数据：</h3>
+<p>输入数据的第一行包括三个整数 n<em>，</em>q 和 s
+分别表示星球的数目，可供购买的方案数目以及地球的标号。</p>
+<p>接下来的 q 行表示 q 种方案。</p>
+<ul>
+<li>输入 <code>1 v u w</code> 表示第一种方案，其中 v,u
+意思同上，<em>w</em> 表示此方案价格。</li>
+<li>输入 <code>2 v l r w</code> 表示第二种方案，其中 v,l,r
+意思同上，<em>w</em> 表示此方案价格。</li>
+<li>输入 <code>3 v l r w</code> 表示第三种方案，其中 v,l,r
+意思同上，<em>w</em> 表示此方案价格。</li>
+</ul>
+<h3 id="输出格式">输出格式：</h3>
+<p>输出一行用空格隔开的 n 个整数分别表示从地球到第 i
+个星球所需的最小钱数。如果不能到达那个星球，输出-1。</p>
+<h2 id="参考题解"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/et2006/solution-cf786b">参考题解</a></h2>
+<p>题解的思路很明白了，我也想重新整理一遍，但是画图很麻烦呢，找到好的方法之后再来吧。</p>
+<p>文字讲解一下思路，如果我们已经按照题目要求建好边，那么问题就是一个简单的单源最短路问题，用最短路的算法就可以解决。于是我们就考虑建边，对于单点建边，也和一般的图问题一样。所以这道题目我们只考虑区间建边。对于区间操作，我们想到的有，差分，前缀和，线段树。可以在这道题使用的就是线段树了。思考线段树的结构，要连接点和区间，只要按线段树查询的方式就可以logn地找到区间并连边。这样，区间节点可以向下连接到子节点。</p>
+<p>但是我们并不能直接在一个线段树上建边。父节点与子节点如果建双向边，并且父子节点理应无消耗，那么叶节点之间可以无消耗穿梭。</p>
+<p>因此要建单向边。单独思考操作二，我们要建从叶子节点到区间节点的边，而区间节点要可以向下到具体的点，因此我们就要建一棵从根节点指向叶子节点的树，并有一些从叶子节点指向区间节点的边。同理，单独考虑操作三，就要建一棵从叶子节点指向根节点的树，并有一些从区间节点指向叶子节点的边。两者结合，就要建两棵线段树，并把对应的叶子节点相连。</p>
+<h3 id="建树">建树</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">5e5</span>;<br><span class="hljs-type">int</span> leaf[<span class="hljs-number">2</span>*N+<span class="hljs-number">10</span>],dis[<span class="hljs-number">2</span>*N+<span class="hljs-number">10</span>];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r)</span></span>&#123;<span class="hljs-comment">//建树</span><br>	<span class="hljs-keyword">if</span>(l==r)&#123;<br>		leaf[l]=x;<span class="hljs-comment">//叶节点标号</span><br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>    <span class="hljs-comment">//建图，单向树</span><br>	t[x].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(ls,<span class="hljs-number">0</span>));<br>	t[x].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(rs,<span class="hljs-number">0</span>));<br>	t[ls+N].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(x+N,<span class="hljs-number">0</span>));<br>	t[rs+N].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(x+N,<span class="hljs-number">0</span>));<br>	<span class="hljs-built_in">build</span>(ls,l,mid);<br>	<span class="hljs-built_in">build</span>(rs,mid+<span class="hljs-number">1</span>,r);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="连边">连边</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">connect</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> L,<span class="hljs-type">int</span> R,<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> w,<span class="hljs-type">int</span> f)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(l&gt;=L&amp;&amp;r&lt;=R)&#123;<br>		<span class="hljs-keyword">if</span>(f)t[x+N].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(u,w));<span class="hljs-comment">//操作三 区间指向叶节点</span><br>		<span class="hljs-keyword">else</span> t[u].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(x,w));<span class="hljs-comment">//操作二 叶节点指向区间</span><br>        <span class="hljs-comment">//需要注意的是叶节点本质相同，所以全连同一棵树上的叶子节点即可</span><br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(L&lt;=mid)<span class="hljs-built_in">connect</span>(ls,l,mid,L,R,u,w,f);<br>	<span class="hljs-keyword">if</span>(mid&lt;R)<span class="hljs-built_in">connect</span>(rs,mid+<span class="hljs-number">1</span>,r,L,R,u,w,f);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="完整代码">完整代码</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls (2*x)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs (2*x+1)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> mid ((l+r)/2)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> pii pair<span class="hljs-string">&lt;int,int&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> fi first</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> se second</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">5e5</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> inf=<span class="hljs-number">1e18</span>;<br><span class="hljs-type">int</span> leaf[<span class="hljs-number">2</span>*N+<span class="hljs-number">10</span>],dis[<span class="hljs-number">2</span>*N+<span class="hljs-number">10</span>];<br><span class="hljs-type">int</span> n,m,st;<br>vector&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &gt;t[<span class="hljs-number">2</span>*N];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(l==r)&#123;<br>		leaf[l]=x;<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	t[x].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(ls,<span class="hljs-number">0</span>));<br>	t[x].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(rs,<span class="hljs-number">0</span>));<br>	t[ls+N].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(x+N,<span class="hljs-number">0</span>));<br>	t[rs+N].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(x+N,<span class="hljs-number">0</span>));<br>	<span class="hljs-built_in">build</span>(ls,l,mid);<br>	<span class="hljs-built_in">build</span>(rs,mid+<span class="hljs-number">1</span>,r);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">connect</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> l,<span class="hljs-type">int</span> r,<span class="hljs-type">int</span> L,<span class="hljs-type">int</span> R,<span class="hljs-type">int</span> u,<span class="hljs-type">int</span> w,<span class="hljs-type">int</span> f)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(l&gt;=L&amp;&amp;r&lt;=R)&#123;<br>		<span class="hljs-keyword">if</span>(f)t[x+N].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(u,w));<br>		<span class="hljs-keyword">else</span> t[u].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(x,w));<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-keyword">if</span>(L&lt;=mid)<span class="hljs-built_in">connect</span>(ls,l,mid,L,R,u,w,f);<br>	<span class="hljs-keyword">if</span>(mid&lt;R)<span class="hljs-built_in">connect</span>(rs,mid+<span class="hljs-number">1</span>,r,L,R,u,w,f);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	cin&gt;&gt;n&gt;&gt;m&gt;&gt;st;<br>	<span class="hljs-built_in">build</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,n);<br>	<span class="hljs-keyword">while</span>(m--)&#123;<br>		<span class="hljs-type">int</span> op,u,v,l,r,w;<br>		cin&gt;&gt;op;<br>		<span class="hljs-keyword">if</span>(op==<span class="hljs-number">1</span>)&#123;<br>			cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;<br>			t[leaf[u]].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(leaf[v],w));<br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			cin&gt;&gt;u&gt;&gt;l&gt;&gt;r&gt;&gt;w;<br>			<span class="hljs-built_in">connect</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,n,l,r,leaf[u],w,op%<span class="hljs-number">2</span>);<br>		&#125; <br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		t[leaf[i]].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(leaf[i]+N,<span class="hljs-number">0</span>));<br>		t[leaf[i]+N].<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">pii</span>(leaf[i],<span class="hljs-number">0</span>));<br>	&#125;<br>	priority_queue&lt;pii,vector&lt;pii&gt;,greater&lt;pii&gt; &gt;q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">2</span>*N+<span class="hljs-number">10</span>;i++)dis[i]=inf;<br>	dis[leaf[st]+N]=<span class="hljs-number">0</span>;<br>	q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pii</span>(<span class="hljs-number">0</span>,leaf[st]+N));<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		pii u=q.<span class="hljs-built_in">top</span>();<br>		q.<span class="hljs-built_in">pop</span>();<br>		<span class="hljs-type">int</span> x=u.se,sum=u.fi;<br>		<span class="hljs-comment">//cout&lt;&lt;x&lt;&lt;&#x27;\n&#x27;;</span><br>		<span class="hljs-keyword">if</span>(sum&gt;dis[x])<span class="hljs-keyword">continue</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> v:t[x])&#123;<br>			<span class="hljs-type">int</span> y=v.fi,z=v.se;<br>			<span class="hljs-keyword">if</span>(dis[y]&gt;sum+z)&#123;<br>				dis[y]=sum+z;<br>				q.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pii</span>(dis[y],y));<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(dis[leaf[i]]==inf)cout&lt;&lt;<span class="hljs-string">&quot;-1 &quot;</span>;<br>		<span class="hljs-keyword">else</span> cout&lt;&lt;dis[leaf[i]]&lt;&lt;<span class="hljs-string">&#x27; &#x27;</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/%E6%A8%A1%E6%9D%BF/">模板</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/">最短路</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">线段树</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E8%AE%BA/">图论</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/18/dijkstra%E6%A8%A1%E6%9D%BF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">dijkstra模板</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/07/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/">
+                        <span class="hidden-mobile">树链剖分</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"CV3Ci2qVGj6ghdoc6FADlmUE-gzGzoHsz","appKey":"SVxd3V8ixzW7DXy6bopR8dxT","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick"],"pageSize":10,"lang":"zh-CN","highlight":"ture","recordIP":"ture","serverURLs":"","emojiCDN":"ture","emojiMaps":"ture","enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
