@@ -16,22 +16,22 @@
   <meta name="author" content="Crzay_wa">
   <meta name="keywords" content="zh_CN">
   
-    <meta name="description" content="Link with Bracket Sequence II 思路 区间dp，这个之前没写过，记一下这个题。一般形式就三个循环，从外到里枚举区间长度，区间起点，分割点。这题用f[i] [j]记录，[i,j]是合法序列且i,j是匹配的括号的方案数,g[i] [j]表示[i,j]是合法序列的方案数。 转移：f[i] [j]&#x3D;k*g[i+1] [j-1]，k为i,j上可匹配的括号数。 g[i]">
+    <meta name="description" content="Graph Games 题目大意 给N个点，M条边，所有边从1到M编号 定义集合S(x)为从点x可以通过一条边到达的所有点 给Q次操作，有以下两种操作  （1，l，r）将闭区间（l,r)上的边反转——有边变为无边，无边变为有边 （2，u，v）判断S（u）和S（v）是否相等  N&lt;&#x3D;1e5,M&lt;&#x3D;2e5,Q&lt;&#x3D;2e5 思路 对于操作1，我们可以对边分块，对单点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Link with Bracket Sequence II">
-<meta property="og:url" content="http://crzzywa.github.io/2022/07/29/II/index.html">
+<meta property="og:title" content="Graph Games">
+<meta property="og:url" content="http://crzzywa.github.io/2022/10/04/Games/index.html">
 <meta property="og:site_name" content="Crazy_wa">
-<meta property="og:description" content="Link with Bracket Sequence II 思路 区间dp，这个之前没写过，记一下这个题。一般形式就三个循环，从外到里枚举区间长度，区间起点，分割点。这题用f[i] [j]记录，[i,j]是合法序列且i,j是匹配的括号的方案数,g[i] [j]表示[i,j]是合法序列的方案数。 转移：f[i] [j]&#x3D;k*g[i+1] [j-1]，k为i,j上可匹配的括号数。 g[i]">
+<meta property="og:description" content="Graph Games 题目大意 给N个点，M条边，所有边从1到M编号 定义集合S(x)为从点x可以通过一条边到达的所有点 给Q次操作，有以下两种操作  （1，l，r）将闭区间（l,r)上的边反转——有边变为无边，无边变为有边 （2，u，v）判断S（u）和S（v）是否相等  N&lt;&#x3D;1e5,M&lt;&#x3D;2e5,Q&lt;&#x3D;2e5 思路 对于操作1，我们可以对边分块，对单点">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-29T05:04:49.000Z">
-<meta property="article:modified_time" content="2022-07-29T06:33:37.805Z">
+<meta property="article:published_time" content="2022-10-04T11:22:48.000Z">
+<meta property="article:modified_time" content="2022-10-04T12:17:55.285Z">
 <meta property="article:author" content="Crzay_wa">
-<meta property="article:tag" content="区间dp">
-<meta property="article:tag" content="2022“杭电杯”中国大学生算法设计超级联赛">
+<meta property="article:tag" content="分块">
+<meta property="article:tag" content="哈希">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>Link with Bracket Sequence II - Crazy_wa</title>
+  <title>Graph Games - Crazy_wa</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Link with Bracket Sequence II">
+            <span class="h2" id="subtitle" title="Graph Games">
               
             </span>
 
@@ -204,8 +204,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-07-29 13:04" pubdate>
-        2022年7月29日 下午
+      <time datetime="2022-10-04 19:22" pubdate>
+        2022年10月4日 晚上
       </time>
     </span>
   
@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.7k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11 分钟
+      14 分钟
     </span>
   
 
@@ -253,20 +253,24 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Link with Bracket Sequence II</h1>
+            <h1 style="display: none">Graph Games</h1>
             
             <div class="markdown-body">
-              <h2 id="link-with-bracket-sequence-ii"><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=7174">Link with Bracket
-Sequence II</a></h2>
+              <h2 id="graph-games"><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/41755/A">Graph Games</a></h2>
+<h2 id="题目大意">题目大意</h2>
+<p>给N个点，M条边，所有边从1到M编号</p>
+<p>定义集合S(x)为从点x可以通过一条边到达的所有点</p>
+<p>给Q次操作，有以下两种操作</p>
+<ol type="1">
+<li><p>（1，l，r）将闭区间（l,r)上的边反转——有边变为无边，无边变为有边</p></li>
+<li><p>（2，u，v）判断S（u）和S（v）是否相等</p></li>
+</ol>
+<p>N&lt;=1e5,M&lt;=2e5,Q&lt;=2e5</p>
 <h2 id="思路">思路</h2>
-<p>区间dp，这个之前没写过，记一下这个题。一般形式就三个循环，从外到里枚举区间长度，区间起点，分割点。这题用f[i]
-[j]记录，[i,j]是合法序列且i,j是匹配的括号的方案数,g[i]
-[j]表示[i,j]是合法序列的方案数。</p>
-<p>转移：f[i] [j]=k*g[i+1] [j-1]，k为i,j上可匹配的括号数。 g[i] [j]=g[i]
-[t-1]+f[t] [j]</p>
-<p>复杂度O(n)</p>
+<p>对于操作1，我们可以对边分块，对单点直接异或记在点上，对整块批量打上标记即可。</p>
+<p>对于操作2，我们用哈希表示每个边的值，点在各块的值用单块内边的异或和表示，所有区间的和与两点异或和相同即为相同。</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ls 2*x</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rs 2*x+1</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> mid ((l+r)/2)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> pii pair<span class="hljs-string">&lt;int,int&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> fi first</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> se second</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">550</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> mod=<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> inf=<span class="hljs-number">1e18</span>;<br><span class="hljs-type">int</span> a[N],f[N][N],g[N][N];<br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> T;<br>	cin&gt;&gt;T;<br>	<span class="hljs-keyword">while</span>(T--) &#123;<br>		<span class="hljs-built_in">memset</span>(g,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(g));<br>		<span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(f));<br>		<span class="hljs-type">int</span> n,m;<br>		cin&gt;&gt;n&gt;&gt;m;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=n; i++) &#123;<br>			cin&gt;&gt;a[i];<br>		&#125;<br>		<span class="hljs-keyword">if</span>(n%<span class="hljs-number">2</span>==<span class="hljs-number">1</span>) &#123;<br>			cout&lt;&lt;<span class="hljs-string">&quot;0\n&quot;</span>;<br>			<span class="hljs-keyword">continue</span>;<br>		&#125;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;=n; i++) &#123;<br>			g[i+<span class="hljs-number">1</span>][i]=<span class="hljs-number">1</span>;<br>		&#125;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> len=<span class="hljs-number">2</span>; len&lt;=n; len+=<span class="hljs-number">2</span>) &#123;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> l=<span class="hljs-number">1</span>; l+len<span class="hljs-number">-1</span>&lt;=n; l++) &#123;<br>				<span class="hljs-type">int</span> r=l+len<span class="hljs-number">-1</span>;<br>				<span class="hljs-keyword">if</span>(a[l]&gt;=<span class="hljs-number">0</span>&amp;&amp;a[r]&lt;=<span class="hljs-number">0</span>) &#123;<br>					<span class="hljs-type">int</span> e=<span class="hljs-number">0</span>;<br>					<span class="hljs-keyword">if</span>(a[l]==<span class="hljs-number">0</span>&amp;&amp;a[r]==<span class="hljs-number">0</span>)e=m;<br>					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a[l]==<span class="hljs-number">0</span>||a[r]==<span class="hljs-number">0</span>)e=<span class="hljs-number">1</span>;<br>					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a[l]+a[r]==<span class="hljs-number">0</span>)e=<span class="hljs-number">1</span>;<br>					f[l][r]=g[l+<span class="hljs-number">1</span>][r<span class="hljs-number">-1</span>]*e%mod;<br>				&#125;<br>				<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> t=l; t&lt;=r; t+=<span class="hljs-number">2</span>) &#123;<br>					g[l][r]=(g[l][r]+g[l][t<span class="hljs-number">-1</span>]*f[t][r])%mod;<br>				&#125;<br>			&#125;<br>		&#125;<br>		cout&lt;&lt;g[<span class="hljs-number">1</span>][n]&lt;&lt;endl;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">2e5</span>+<span class="hljs-number">100</span>;<br><span class="hljs-type">int</span> b[N],block,num,id[N],tag[N],u[N],v[N];<br><span class="hljs-type">int</span> n,m,q;<br><span class="hljs-type">long</span> <span class="hljs-type">long</span> sum[<span class="hljs-number">500</span>][N],s[N];<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> x,y;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<br>	block = <span class="hljs-built_in">sqrt</span>(m);<br>	num = (m - <span class="hljs-number">1</span>) / block  + <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i)<br>		b[i] = (i - <span class="hljs-number">1</span>) / block + <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; ++i) &#123;<br>		tag[i] = <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt;= n; ++j)<br>			sum[i][j] = <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; ++i)<br>		s[i] = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);<br>		u[i] = x;<br>		v[i] = y;<br>		sum[b[i]][x] ^= id[y];<br>		sum[b[i]][y] ^= id[x];<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = x; i &lt;= <span class="hljs-built_in">min</span>(y,b[x]*block); ++i) &#123;<br>		s[u[i]] ^= id[v[i]];<br>		s[v[i]] ^= id[u[i]];<br>	&#125;<br>	<span class="hljs-keyword">if</span> (b[x] != b[y])<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = (b[y] - <span class="hljs-number">1</span>) * block + <span class="hljs-number">1</span>; i &lt;= y; ++i) &#123;<br>			s[u[i]] ^= id[v[i]];<br>			s[v[i]] ^= id[u[i]];<br>		&#125;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = b[x] + <span class="hljs-number">1</span>; i &lt;= b[y] - <span class="hljs-number">1</span>; ++i)<br>		tag[i] ^= <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> op,x,y;<br>	<span class="hljs-built_in">srand</span>(<span class="hljs-built_in">time</span>(<span class="hljs-literal">NULL</span>));<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; ++i) id[i] = <span class="hljs-built_in">rand</span>() + <span class="hljs-number">1</span>;<span class="hljs-comment">//给边附上哈希值</span><br>	<span class="hljs-type">int</span> T;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;T);<br>	<span class="hljs-keyword">while</span>(T--) &#123;<br>		<span class="hljs-built_in">init</span>();<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;q);<br>		<span class="hljs-keyword">while</span>(q--) &#123;<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;op,&amp;x,&amp;y);<br>			<span class="hljs-keyword">if</span> (op == <span class="hljs-number">1</span>) <span class="hljs-built_in">modify</span>(x,y);<br>			<span class="hljs-keyword">if</span> (op == <span class="hljs-number">2</span>) &#123;<br>				<span class="hljs-type">long</span> <span class="hljs-type">long</span> ans1 = s[x], ans2 = s[y];<br>				<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; ++i)<br>					<span class="hljs-keyword">if</span> (tag[i]) &#123;<br>						ans1 ^= sum[i][x];<br>						ans2 ^= sum[i][y];<br>					&#125;<br>				<span class="hljs-built_in">putchar</span>(ans1==ans2?<span class="hljs-string">&#x27;1&#x27;</span>:<span class="hljs-string">&#x27;0&#x27;</span>);<br>			&#125;<br>		&#125;<br>		<span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;\n&#x27;</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -286,9 +290,9 @@ Sequence II</a></h2>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8C%BA%E9%97%B4dp/">区间dp</a>
+                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%9D%97/">分块</a>
                     
-                      <a class="hover-with-bg" href="/tags/2022%E2%80%9C%E6%9D%AD%E7%94%B5%E6%9D%AF%E2%80%9D%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E8%B6%85%E7%BA%A7%E8%81%94%E8%B5%9B/">2022“杭电杯”中国大学生算法设计超级联赛</a>
+                      <a class="hover-with-bg" href="/tags/%E5%93%88%E5%B8%8C/">哈希</a>
                     
                   </div>
                 
@@ -305,9 +309,9 @@ Sequence II</a></h2>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/04/Games/">
+                      <a href="/2022/10/04/subsequence2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Graph Games</span>
+                        <span class="hidden-mobile">subsequence 2</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -315,8 +319,8 @@ Sequence II</a></h2>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/18/dijkstra%E6%A8%A1%E6%9D%BF/">
-                        <span class="hidden-mobile">dijkstra模板</span>
+                      <a href="/2022/07/29/II/">
+                        <span class="hidden-mobile">Link with Bracket Sequence II</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
