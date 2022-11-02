@@ -16,15 +16,18 @@
   <meta name="author" content="Crzay_wa">
   <meta name="keywords" content="zh_CN">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="Trie Trie又叫字典树、前缀树。利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较。 暂且分成处理字符的Trie，和处理二进制的01Trie 字符 remember the word UVALive-3942 123456789101112131415161718192021222324252627282930313233343536struct Node &amp;#1">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Trie">
 <meta property="og:url" content="http://crzzywa.github.io/2022/11/01/Trie/index.html">
 <meta property="og:site_name" content="Crazy_wa">
+<meta property="og:description" content="Trie Trie又叫字典树、前缀树。利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较。 暂且分成处理字符的Trie，和处理二进制的01Trie 字符 remember the word UVALive-3942 123456789101112131415161718192021222324252627282930313233343536struct Node &amp;#1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-01T15:05:05.000Z">
-<meta property="article:modified_time" content="2022-11-01T15:05:05.901Z">
+<meta property="article:modified_time" content="2022-11-01T15:42:10.917Z">
 <meta property="article:author" content="Crzay_wa">
-<meta property="article:tag" content="zh_CN">
+<meta property="article:tag" content="Trie">
+<meta property="article:tag" content="模板">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -212,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      833 字
     </span>
   
 
@@ -221,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      7 分钟
     </span>
   
 
@@ -253,13 +256,37 @@
             <h1 style="display: none">Trie</h1>
             
             <div class="markdown-body">
-              
+              <h2 id="trie">Trie</h2>
+<p>Trie又叫字典树、前缀树。利用字符串的公共前缀来减少查询时间，最大限度地减少无谓的字符串比较。</p>
+<p>暂且分成处理字符的Trie，和处理二进制的01Trie</p>
+<h3 id="字符">字符</h3>
+<h3 id="remember-the-word-uvalive-3942">remember the word
+UVALive-3942</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></div></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Node</span> &#123;<br>	<span class="hljs-type">int</span> son[<span class="hljs-number">26</span>],val;<span class="hljs-comment">//son记字符分支，val等记结束点状态</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-comment">//初始化</span><br>		<span class="hljs-built_in">memset</span>(son,<span class="hljs-number">0</span>,<span class="hljs-built_in">sizeof</span>(son));<br>		val=<span class="hljs-number">0</span>;<br>	&#125;<br>&#125;;<br><span class="hljs-type">int</span> cur,dp[N];<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Trie</span> &#123;<br>	Node node[N*<span class="hljs-number">10</span>];<span class="hljs-comment">//节点</span><br>	<span class="hljs-type">int</span> sz;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<br>		sz=<span class="hljs-number">0</span>;<br>		node[<span class="hljs-number">0</span>].<span class="hljs-built_in">init</span>();<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(string s)</span> </span>&#123;<span class="hljs-comment">//插入操作</span><br>		<span class="hljs-type">int</span> now=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;s.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-type">int</span> &amp;nxt=node[now].son[s[i]-<span class="hljs-string">&#x27;a&#x27;</span>];<br>			<span class="hljs-keyword">if</span>(!nxt)node[nxt=++sz].<span class="hljs-built_in">init</span>();<span class="hljs-comment">//如果找到的点不存在，新开一个点</span><br>			now=nxt;<br>		&#125;<br>		node[now].val=<span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">search</span><span class="hljs-params">(string s)</span> </span>&#123;<span class="hljs-comment">//查找操作</span><br>		<span class="hljs-type">int</span> now=<span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i&lt;s.<span class="hljs-built_in">size</span>(); i++) &#123;<br>			<span class="hljs-type">int</span> &amp; nxt=node[now].son[s[i]-<span class="hljs-string">&#x27;a&#x27;</span>];<br>			now=nxt;<br>			<span class="hljs-keyword">if</span>(!nxt)<span class="hljs-keyword">return</span>;<br>			<span class="hljs-keyword">if</span>(node[now].val==<span class="hljs-number">1</span>) &#123;<span class="hljs-comment">//单词结束的节点</span><br>				dp[cur]=(dp[cur]+dp[cur+i+<span class="hljs-number">1</span>])%<span class="hljs-number">20071027</span>;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125; T;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/%E6%A8%A1%E6%9D%BF/">模板</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Trie/">Trie</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>
+                    
+                  </div>
                 
               </div>
               
