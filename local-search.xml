@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>触发器</title>
+    <link href="/2023/06/03/%E8%A7%A6%E5%8F%91%E5%99%A8/"/>
+    <url>/2023/06/03/%E8%A7%A6%E5%8F%91%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="实例实现一个移动的小球">实例：实现一个移动的小球</h1><h2 id="球体运动脚本">球体运动脚本</h2><p>通过transform的translate函数来改变实体的位置，是实现移动的一种基础方法。</p><figure class="highlight c#"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></div></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEditor;<br><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.SceneManagement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">move</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-comment">// Start is called before the first frame update</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> speed=<span class="hljs-number">10</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> turnspeed=<span class="hljs-number">10</span>;<br>    <br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        <br>        <span class="hljs-built_in">float</span> x = Input.GetAxis(<span class="hljs-string">&quot;Horizontal&quot;</span>);<span class="hljs-comment">//小球只进行左右运动</span><br>        transform.Translate(x * turnspeed * Time.deltaTime, <span class="hljs-number">0</span>, speed * Time.deltaTime);<span class="hljs-comment">//移动代码</span><br>        <br>        <br>        <span class="hljs-keyword">if</span> (transform.position.x &lt; <span class="hljs-number">-4</span> || transform.position.x &gt; <span class="hljs-number">4</span>)<br>        &#123;<br>            transform.Translate(x * turnspeed * Time.deltaTime, <span class="hljs-number">-10</span> * Time.deltaTime, speed * Time.deltaTime);<br>            <span class="hljs-comment">//超出边界后下落</span><br>        &#125;<br>        <span class="hljs-keyword">if</span> (transform.position.y &lt; <span class="hljs-number">-15</span>)<br>        &#123;<br>            Time.timeScale = <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (Input.GetKeyDown(KeyCode.R))<span class="hljs-comment">//按r重新开始游戏</span><br>        &#123;<br>            SceneManager.LoadScene(<span class="hljs-number">0</span>);<br>            Time.timeScale = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        Transform c = Camera.main.transform;<br>        Quaternion cur = c.rotation;<br>        Quaternion target = cur * Quaternion.Euler(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, x *<span class="hljs-number">0.5f</span>);<br>        Camera.main.transform.rotation = Quaternion.Slerp(cur, target, <span class="hljs-number">0.25f</span>);<span class="hljs-comment">//摄像机转动</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure><h2 id="触发器脚本">触发器脚本</h2><p>小球碰到障碍物后要结束游戏，通过设置触发器完成</p><p><strong>注意障碍物要勾选<em>is trigger</em>选项</strong></p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">reach</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnTriggerEnter</span>(<span class="hljs-params">Collider other</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (other.name == <span class="hljs-string">&quot;Sphere&quot;</span>)<span class="hljs-comment">//碰到了障碍物</span><br>        &#123;<br>            Time.timeScale = <span class="hljs-number">0</span>;<span class="hljs-comment">//游戏结束</span><br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>unity</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>unity</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>maximum Subarray</title>
     <link href="/2023/03/05/Subarray/"/>
     <url>/2023/03/05/Subarray/</url>
@@ -714,9 +739,9 @@
     
     <tags>
       
-      <tag>背包</tag>
-      
       <tag>dp</tag>
+      
+      <tag>背包</tag>
       
     </tags>
     
