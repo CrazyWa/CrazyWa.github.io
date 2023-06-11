@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Crzay_wa">
+  <meta name="keywords" content="zh_CN">
+  
+    <meta name="description" content="坐标系 世界坐标系 unity的世界坐标系是左手系，左手手掌向上为y轴，4根手指为x轴，大拇指为z轴 局部坐标系 12345678&#x2F;&#x2F;坐标Vector3 worldPos &#x3D;transform.position;&#x2F;&#x2F;获取当前物品的世界坐标系Vector3 localPos &#x3D;transform.loaclPosition;&#x2F;&#x2F;获取当前物品相对父物品的位置&#x2F;&#x2F;旋转 用到四元数（Quatern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数学与unity">
+<meta property="og:url" content="http://crzzywa.github.io/2023/06/08/%E6%95%B0%E5%AD%A6%E4%B8%8Eunity/index.html">
+<meta property="og:site_name" content="Crazy_wa">
+<meta property="og:description" content="坐标系 世界坐标系 unity的世界坐标系是左手系，左手手掌向上为y轴，4根手指为x轴，大拇指为z轴 局部坐标系 12345678&#x2F;&#x2F;坐标Vector3 worldPos &#x3D;transform.position;&#x2F;&#x2F;获取当前物品的世界坐标系Vector3 localPos &#x3D;transform.loaclPosition;&#x2F;&#x2F;获取当前物品相对父物品的位置&#x2F;&#x2F;旋转 用到四元数（Quatern">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-08T06:45:54.000Z">
+<meta property="article:modified_time" content="2023-06-11T09:07:06.193Z">
+<meta property="article:author" content="Crzay_wa">
+<meta property="article:tag" content="unity">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>数学与unity - Crazy_wa</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"crzzywa.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/picture/chainsawman.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数学与unity">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Crzay_wa
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-06-08 14:45" pubdate>
+        2023年6月8日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数学与unity</h1>
+            
+            <div class="markdown-body">
+              <h2 id="坐标系">坐标系</h2>
+<h3 id="世界坐标系">世界坐标系</h3>
+<p>unity的世界坐标系是左手系，左手手掌向上为y轴，4根手指为x轴，大拇指为z轴</p>
+<h3 id="局部坐标系">局部坐标系</h3>
+<figure class="highlight c#"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//坐标</span><br>Vector3 worldPos =transform.position;<span class="hljs-comment">//获取当前物品的世界坐标系</span><br>Vector3 localPos =transform.loaclPosition;<span class="hljs-comment">//获取当前物品相对父物品的位置</span><br><span class="hljs-comment">//旋转 用到四元数（Quaternion）</span><br>Quaternion worldRotation = transform.rotation;<br>Quaternion localRotation = transform.localRotation;<br><span class="hljs-comment">//父物体局部坐标系下的缩放。无法直接获得世界坐标系的缩放</span><br>Vector3 localScale = transform.localScale;<br></code></pre></td></tr></table></figure>
+<h3 id="区别">区别</h3>
+<p>任何坐标数值在不同坐标系用不同的解释。</p>
+<h3 id="屏幕坐标系">屏幕坐标系</h3>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c#">Vector2 mousePos = Input.mousePostion;<span class="hljs-comment">//鼠标在屏幕上的位置</span><br>Vector3 viewPoint = Camera.main.ScreenToViewportPoint(Input.mousePosition);<br><span class="hljs-comment">//将鼠标指针位置转化为视图坐标系要用摄像机计算</span><br></code></pre></td></tr></table></figure>
+<h2 id="向量">向量</h2>
+<h3 id="标准化">标准化</h3>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-comment">//Vector3为一个三维向量，下面是它的标准化</span><br>Vector3 a=<span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);<br>Vector3 na=a/a.magnitude;<br><br>Vector3 na2=a.normalized;<br><br>Vector3 na2=Vector3.Normalized(a);<br><br>Vector3 na4=(<span class="hljs-number">1</span>/a.magnitude)*a;<br></code></pre></td></tr></table></figure>
+<h3 id="点积">点积</h3>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//计算向量a在向量b方向上的投影长度</span><br>Vector3 a=<span class="hljs-keyword">new</span> Vector(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);<br>Vector3 b=<span class="hljs-keyword">new</span> Vector(<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);<br>Vector3 dir_b=b.nomalized;<br><span class="hljs-built_in">float</span> pa=Vector3.dot(a,dir_b);<span class="hljs-comment">//点积操作</span><br></code></pre></td></tr></table></figure>
+<h3 id="叉积">叉积</h3>
+<p><strong>unity的叉积是左手系</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//计算两向量平面上的法线</span><br>Vector3 a=<span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>Vector3 b=<span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);<br>Vector3 n=Vector3.Cross(a,b);<span class="hljs-comment">//叉乘操作</span><br>n=n.normalized;<br></code></pre></td></tr></table></figure>
+<h3 id="vector3常用方法">Vector3常用方法</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方法</th>
+<th style="text-align: center;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Cross()</td>
+<td style="text-align: center;">叉乘</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dot()</td>
+<td style="text-align: center;">点乘</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Project()</td>
+<td style="text-align: center;">计算向量在另一个向量上的投影</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Angle()</td>
+<td style="text-align: center;">返回两个向量的夹角</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Distance()</td>
+<td style="text-align: center;">返回两个向量的距离</td>
+</tr>
+</tbody>
+</table>
+<h2 id="向量坐标系的转换">向量坐标系的转换</h2>
+<p>对于同一个常数，在不同的方法中有不同的含义</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">//transform.Translate()默认是以局部坐标系为基准</span><br><span class="hljs-comment">//因此如果想要以世界坐标系为准，Translate函数的参数是要从世界坐标系向量转化成等价的局部坐标系向量</span><br><span class="hljs-comment">//转化通过InverseTransformDirection()完成</span><br><span class="hljs-comment">//其他转换函数</span><br></code></pre></td></tr></table></figure>
+<table>
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>transform.TransformPoint()</td>
+<td>局部坐标转换为世界坐标</td>
+</tr>
+<tr class="even">
+<td>transform.InverseTransformPoint()</td>
+<td>世界坐标转换为局部坐标</td>
+</tr>
+<tr class="odd">
+<td>transform.TransformDirection()</td>
+<td>局部坐标系向量转换为世界坐标系向量</td>
+</tr>
+<tr class="even">
+<td>transform.InverseTransformDirection()</td>
+<td>世界坐标系向量转换为局部坐标系向量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="四元数">四元数</h2>
+<h3 id="概念">概念</h3>
+<p>四元数包含一个标量分量和一个三维向量分量，四元数Q可以记作 <span class="math display">\[
+Q=[w,(x,y,z)]
+\]</span>
+矩阵和欧拉角也可以不同程度表示旋转和朝向，但各有优劣，这里不进行赘述。</p>
+<h3 id="结构体">结构体</h3>
+<p><strong>四元数的属性</strong></p>
+<table>
+<colgroup>
+<col style="width: 21%">
+<col style="width: 78%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quaternion属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>x</td>
+<td>四元数的x分量，不应直接修改</td>
+</tr>
+<tr class="even">
+<td>y</td>
+<td>四元数的y分量，不应直接修改</td>
+</tr>
+<tr class="odd">
+<td>z</td>
+<td>四元数的z分量，不应直接修改</td>
+</tr>
+<tr class="even">
+<td>w</td>
+<td>四元数的w分量，不应直接修改</td>
+</tr>
+<tr class="odd">
+<td>this[int index]</td>
+<td>允许通过下标运算符访问x、y、z、w分量。例如[1]可以访问y</td>
+</tr>
+<tr class="even">
+<td>eulerAngles</td>
+<td>获得对应的欧拉角</td>
+</tr>
+<tr class="odd">
+<td>identity</td>
+<td>获得无旋转的四元数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>四元数的方法和运算符</strong></p>
+<table>
+<colgroup>
+<col style="width: 24%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quaternion方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ToAngleAxis</td>
+<td>将旋转转换为一个轴和一个角度的性事</td>
+</tr>
+<tr class="even">
+<td>SetFromToRotation</td>
+<td>与FromToRotation类似，但是直接修改当前四元数对象</td>
+</tr>
+<tr class="odd">
+<td>SetLookRotation</td>
+<td>与LookRotation类似，但是直接修改当前四元数对象</td>
+</tr>
+<tr class="even">
+<td>*</td>
+<td>四元数相乘，代表依次旋转的操作</td>
+</tr>
+<tr class="odd">
+<td>==</td>
+<td>判断四元数是否相等</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>判断四元数是否不相等</td>
+</tr>
+<tr class="odd">
+<td>Dot</td>
+<td>两个旋转点乘</td>
+</tr>
+<tr class="even">
+<td>AngleAxis</td>
+<td>根据一个轴和一个角度获得一个四元数</td>
+</tr>
+<tr class="odd">
+<td>FromToRotation</td>
+<td>获得一个四元数代表从from到to向量的旋转</td>
+</tr>
+<tr class="even">
+<td>LookRotation</td>
+<td>给定前方和上方向量，获得一个旋转</td>
+</tr>
+<tr class="odd">
+<td>Slerp</td>
+<td>插值，根据比例在两个四元数之间进行球面插值</td>
+</tr>
+<tr class="even">
+<td>Lerp</td>
+<td>插值，根据比例在两个四元数之间进行插值并将结果规范化</td>
+</tr>
+<tr class="odd">
+<td>RotateTowards</td>
+<td>将旋转from变到旋转to</td>
+</tr>
+<tr class="even">
+<td>Inverse</td>
+<td>返回四元数的逆</td>
+</tr>
+<tr class="odd">
+<td>Angle</td>
+<td>返回两个旋转之间的夹角</td>
+</tr>
+<tr class="even">
+<td>Euler</td>
+<td>转换为对应的欧拉角</td>
+</tr>
+</tbody>
+</table>
+<h3 id="理解和运用四元数">理解和运用四元数</h3>
+<p>四元数可以表示朝向和旋转。旋转可以用四元数乘法进行。</p>
+<h4 id="旋转和朝向的关系">旋转和朝向的关系</h4>
+<table>
+<thead>
+<tr class="header">
+<th>元素1</th>
+<th>运算符</th>
+<th>元素2</th>
+<th>一般意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>朝向</td>
+<td>*</td>
+<td>朝向</td>
+<td>错误操作，意义不明</td>
+</tr>
+<tr class="even">
+<td>朝向</td>
+<td>*</td>
+<td>旋转</td>
+<td>从某个朝向开始，旋转一个角，得到新的朝向</td>
+</tr>
+<tr class="odd">
+<td>旋转</td>
+<td>*</td>
+<td>旋转</td>
+<td>组合两次旋转，得到合并的结果</td>
+</tr>
+</tbody>
+</table>
+<p>要注意的是，四元数相乘不满足交换律。</p>
+<p>更有意思的是，四元数乘法可以直接作用于向量，这样就可以直接旋转向量。</p>
+<h4 id="用四元数旋转向量的方法">用四元数旋转向量的方法</h4>
+<table>
+<thead>
+<tr class="header">
+<th>元素1</th>
+<th>运算符</th>
+<th>元素2</th>
+<th>一般意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>朝向</td>
+<td>*</td>
+<td>向量</td>
+<td>错误操作</td>
+</tr>
+<tr class="even">
+<td>旋转</td>
+<td>*</td>
+<td>向量</td>
+<td>将向量旋转一个角，得到新的向量</td>
+</tr>
+</tbody>
+</table>
+<p>注意四元数乘以向量时，必须四元数在前，向量在后。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">QuatTest</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        <span class="hljs-built_in">float</span> v = Input.GetAxis(<span class="hljs-string">&quot;Vertical&quot;</span>);<br>        <span class="hljs-built_in">float</span> h = Input.GetAxis(<span class="hljs-string">&quot;Horizontal&quot;</span>);<br>		<span class="hljs-comment">//将横向输入转化为左右旋转，将纵向输入转换为俯仰旋转，得到一个很小的旋转四元数</span><br>        Quaternion smallRotate = Quaternion.Euler(v, h, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">if</span> (Input.GetButton(<span class="hljs-string">&quot;Fire1&quot;</span>))<br>        &#123;<br>            <span class="hljs-comment">//按住crtrl键时，沿世界坐标轴旋转</span><br>            transform.rotation = smallRotate * transform.rotation;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-comment">//不按时，沿局部坐标轴旋转</span><br>            transform.rotation = transform.rotation * smallRotate;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/unity/">unity</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/unity/">unity</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/03/6-1/">
+                        <span class="hidden-mobile">触发器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"CV3Ci2qVGj6ghdoc6FADlmUE-gzGzoHsz","appKey":"SVxd3V8ixzW7DXy6bopR8dxT","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick"],"pageSize":10,"lang":"zh-CN","highlight":"ture","recordIP":"ture","serverURLs":"","emojiCDN":"ture","emojiMaps":"ture","enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
